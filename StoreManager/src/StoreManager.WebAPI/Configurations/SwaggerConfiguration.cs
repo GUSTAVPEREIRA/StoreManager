@@ -4,6 +4,7 @@ using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.OpenApi.Models;
+using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 
 namespace StoreManager.WebAPI.Configurations
 {
@@ -40,6 +41,8 @@ namespace StoreManager.WebAPI.Configurations
                 xmlPath = Path.Combine(AppContext.BaseDirectory, "StoreManager.Core.xml");
                 c.IncludeXmlComments(xmlPath);
             });
+
+            services.AddFluentValidationRulesToSwagger();
         }
 
         public static void UseSwaggerConfiguration(this IApplicationBuilder app)

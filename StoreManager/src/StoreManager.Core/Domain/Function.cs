@@ -1,4 +1,3 @@
-using System;
 namespace StoreManager.Core.Domain
 {
     public class Function

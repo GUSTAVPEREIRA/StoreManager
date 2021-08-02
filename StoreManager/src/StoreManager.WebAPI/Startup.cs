@@ -21,7 +21,8 @@ namespace StoreManager.WebAPI
         {
 
             services.AddControllers();
-            SwaggerConfiguration.AddSwaggerConfiguration(services);
+            services.AddDatabaseConfiguration(Configuration);
+            services.AddSwaggerConfiguration();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -32,7 +33,8 @@ namespace StoreManager.WebAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            SwaggerConfiguration.UseSwaggerConfiguration(app);
+            app.UseDatabaseConfiguration();
+            app.UseSwaggerConfiguration();
 
             app.UseHttpsRedirection();
 
