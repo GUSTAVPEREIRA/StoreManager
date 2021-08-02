@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using StoreManager.Core.Domain;
 
 namespace StoreManager.Infrastructure.Context
 {
@@ -13,5 +14,7 @@ namespace StoreManager.Infrastructure.Context
         {
             base.OnModelCreating(modelBuilder);
         }
+
+        public DbSet<Function> Functions { get; set; }
     }
 }
