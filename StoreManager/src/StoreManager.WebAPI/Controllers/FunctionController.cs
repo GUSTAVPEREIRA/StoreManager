@@ -23,7 +23,7 @@ namespace StoreManager.WebAPI.Controllers
         [ProducesResponseType(typeof(IEnumerable<FunctionDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetFunctions()
+        public async Task<IActionResult> Get()
         {
             var functions = await functionService.GetFunctionsAsync();
 
@@ -33,6 +33,56 @@ namespace StoreManager.WebAPI.Controllers
             }
 
             return NotFound();
+        }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(typeof(FunctionDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Get(int id)
+        {
+            var function = await functionService.GetFunctionAsync(id);
+
+            if (function is null)
+            {
+                return NotFound();
+                
+            }
+            return Ok(function);
+        }
+
+        [HttpPut]
+        [ProducesResponseType(typeof(FunctionDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Put(UpdateFunctionDTO function)
+        {
+            var foundFundction = await functionService.UpdateFunctionAsync(function);
+            if (foundFundction is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(foundFundction);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(FunctionDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Put(NewFunctionDTO function)
+        {
+            var insertedFunction = await functionService.InsertFunctionAsync(function);
+            return CreatedAtAction(nameof(Get), new { Id = insertedFunction.Id }, insertedFunction);
+        }
+
+        [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await functionService.DeleteFunctionAsync(id);
+            return NoContent();
         }
     }
 }

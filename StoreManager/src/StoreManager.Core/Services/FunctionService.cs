@@ -37,9 +37,9 @@ namespace e.Services
             return mapping.Map<FunctionDTO>(function);
         }
 
-        public async Task<bool> DeleteFunctionAsync(int id)
+        public async Task DeleteFunctionAsync(int id)
         {
-            return await functionRepository.DeleteFunctionAsync(id);
+            await functionRepository.DeleteFunctionAsync(id);
         }
 
         public async Task<FunctionDTO> InsertFunctionAsync(NewFunctionDTO functionDTO)

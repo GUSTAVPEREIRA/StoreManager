@@ -49,19 +49,12 @@ namespace StoreManager.Infrastructure.Repositories
             return foundFunction;
         }
 
-        public async Task<bool> DeleteFunctionAsync(int id)
+        public async Task DeleteFunctionAsync(int id)
         {
             var foundFunction = await context.Functions.FindAsync(id);
-            
-            if (foundFunction == null)
-            {
-                return false;
-            }
 
             context.Functions.Remove(foundFunction);
             await context.SaveChangesAsync();
-
-            return true;
         }
     }
 }
