@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using e.Interfaces.Services;
 using FluentAssertions;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using StoreManager.Core.Domain;
 using StoreManager.Core.Interfaces.Repositories;
+using StoreManager.Core.Interfaces.Services;
 using StoreManager.Core.Mappings.Functions;
 using StoreManager.Core.Services;
 using StoreManager.FakeData.Functions;

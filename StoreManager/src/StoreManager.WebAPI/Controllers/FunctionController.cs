@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using e.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using StoreManager.Core.Interfaces.Services;
 using StoreManager.SharedKernel.ViewModels;
 
 namespace StoreManager.WebAPI.Controllers
@@ -43,7 +43,7 @@ namespace StoreManager.WebAPI.Controllers
         {
             var function = await functionService.GetFunctionAsync(id);
 
-            if (function is null)
+            if (function == null)
             {
                 return NotFound();
                 
@@ -70,7 +70,7 @@ namespace StoreManager.WebAPI.Controllers
         [ProducesResponseType(typeof(FunctionDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Put(NewFunctionDTO function)
+        public async Task<IActionResult> Post(NewFunctionDTO function)
         {
             var insertedFunction = await functionService.InsertFunctionAsync(function);
             return CreatedAtAction(nameof(Get), new { Id = insertedFunction.Id }, insertedFunction);
