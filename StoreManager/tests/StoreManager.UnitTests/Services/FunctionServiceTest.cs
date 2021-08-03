@@ -2,13 +2,13 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using e.Interfaces.Services;
-using e.Services;
 using FluentAssertions;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using StoreManager.Core.Domain;
 using StoreManager.Core.Interfaces.Repositories;
 using StoreManager.Core.Mappings.Functions;
+using StoreManager.Core.Services;
 using StoreManager.FakeData.Functions;
 using StoreManager.SharedKernel.ViewModels;
 using Xunit;
@@ -30,7 +30,14 @@ namespace StoreManager.UnitTests.Services
         public FunctionServiceTest()
         {
             repository = Substitute.For<IFunctionRepository>();
-            mapper = new MapperConfiguration(p => p.AddProfile<FunctionMappingProfile>()).CreateMapper();
+
+            mapper = new MapperConfiguration(p =>
+            {
+                p.AddProfile<FunctionMappingProfile>();
+                p.AddProfile<NewFunctionMappingProfile>();
+                p.AddProfile<UpdateFunctionMappingProfile>();
+            }).CreateMapper();
+
             service = new FunctionService(repository, mapper);
             functionFaker = new FunctionDataFaker();
             newFunctionDataFaker = new NewFunctionDataFaker();
@@ -107,20 +114,26 @@ namespace StoreManager.UnitTests.Services
             retorno.Should().BeNull();
         }
 
-        // [Fact]
-        // public async Task DeleteFunctionAsyncSuccess()
-        // {
-        //     repository.DeleteFunctionAsync(Arg.Any<int>()).ReturnsNull();
-        //     var controle = mapper.Map<FunctionDTO>(function);
-        //     await service.DeleteFunctionAsync(function.Id);
-            
-        //     await repository.Received().DeleteFunctionAsync(Arg.Any<>);
-        // }
-        
-        // [Fact]
-        // public void DeleteFunctionAsyncNaoEncontrado()
-        // {
+        [Fact]
+        public async Task DeleteFunctionAsyncSuccess()
+        {
+            repository.DeleteFunctionAsync(Arg.Any<int>()).Returns(function);
+            var controle = mapper.Map<FunctionDTO>(function);
+            var functionDTO = await service.DeleteFunctionAsync(function.Id);
 
-        // }
+            await repository.Received().DeleteFunctionAsync(function.Id);
+            functionDTO.Should().BeEquivalentTo(function);
+        }
+
+        [Fact]
+        public async Task DeleteFunctionAsyncNaoEncontradoAsync()
+        {
+            repository.DeleteFunctionAsync(Arg.Any<int>()).ReturnsNull();
+            var controle = mapper.Map<FunctionDTO>(function);
+            var functionDTO = await service.DeleteFunctionAsync(function.Id);
+
+            await repository.Received().DeleteFunctionAsync(function.Id);
+            functionDTO.Should().BeNull();
+        }
     }
 }

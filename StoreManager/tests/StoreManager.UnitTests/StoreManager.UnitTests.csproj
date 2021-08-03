@@ -27,6 +27,7 @@
     <ProjectReference Include="..\StoreManager.FakeData\StoreManager.FakeData.csproj" />
     <ProjectReference Include="..\..\src\StoreManager.Infrastructure\StoreManager.Infrastructure.csproj" />
     <ProjectReference Include="..\..\src\StoreManager.Core\StoreManager.Core.csproj" />
+    <ProjectReference Include="..\..\src\StoreManager.WebAPI\StoreManager.WebAPI.csproj" />
   </ItemGroup>
 
 </Project>

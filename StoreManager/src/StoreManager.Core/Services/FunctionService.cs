@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -7,7 +6,7 @@ using StoreManager.Core.Domain;
 using StoreManager.Core.Interfaces.Repositories;
 using StoreManager.SharedKernel.ViewModels;
 
-namespace e.Services
+namespace StoreManager.Core.Services
 {
     public class FunctionService : IFunctionService
     {

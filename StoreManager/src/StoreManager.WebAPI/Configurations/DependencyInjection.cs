@@ -1,7 +1,7 @@
 using e.Interfaces.Services;
-using e.Services;
 using Microsoft.Extensions.DependencyInjection;
 using StoreManager.Core.Interfaces.Repositories;
+using StoreManager.Core.Services;
 using StoreManager.Infrastructure.Repositories;
 
 namespace StoreManager.WebAPI.Configurations
