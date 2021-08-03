@@ -37,6 +37,7 @@ namespace StoreManager.Infrastructure.Repositories
         public async Task<Function> UpdateAsync(Function function)
         {
             var foundFunction = await context.Functions.FindAsync(function.Id);
+            
             if (foundFunction == null)
             {
                 return null;
@@ -44,12 +45,14 @@ namespace StoreManager.Infrastructure.Repositories
 
             context.Entry(foundFunction).CurrentValues.SetValues(function);
             await context.SaveChangesAsync();
+
             return foundFunction;
         }
 
         public async Task<bool> DeleteFunctionAsync(int id)
         {
             var foundFunction = await context.Functions.FindAsync(id);
+            
             if (foundFunction == null)
             {
                 return false;
@@ -57,6 +60,7 @@ namespace StoreManager.Infrastructure.Repositories
 
             context.Functions.Remove(foundFunction);
             await context.SaveChangesAsync();
+
             return true;
         }
     }

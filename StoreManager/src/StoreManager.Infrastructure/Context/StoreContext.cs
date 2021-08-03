@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using StoreManager.Core.Domain;
+using StoreManager.Infrastructure.Configuration;
 
 namespace StoreManager.Infrastructure.Context
 {
@@ -13,6 +14,8 @@ namespace StoreManager.Infrastructure.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfiguration(new FunctionConfiguration());
         }
 
         public DbSet<Function> Functions { get; set; }
