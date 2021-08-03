@@ -18,7 +18,7 @@ namespace StoreManager.FakeData.Functions
 
         private void FunctionRules(int id = 0)
         {
-            var functionId = id == 0 ? id : new Faker().PickRandom(1, 99999999);
+            var functionId = id != 0 ? id : new Faker().PickRandom(1, 99999999);
             
             var descriptionCount = new Faker().PickRandom(10, 150);
             RuleFor(x => x.Description, x => x.Lorem.Sentence(descriptionCount));

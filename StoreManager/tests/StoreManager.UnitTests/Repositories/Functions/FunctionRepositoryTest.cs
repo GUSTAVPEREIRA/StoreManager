@@ -66,7 +66,8 @@ namespace StoreManager.UnitTests.Repositories.Functions
         {
             //Given            
             var functions = await InsertDatas();
-            var functionId = functions.Select(x => x.Id).FirstOrDefault();
+            var functionId = functions.Select(x => x.Id).First();
+
             var function = new FunctionDataFaker(functionId).Generate();
 
             //When
