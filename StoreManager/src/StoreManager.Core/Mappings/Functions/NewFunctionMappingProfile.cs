@@ -9,7 +9,6 @@ namespace StoreManager.Core.Mappings.Functions
         public NewFunctionMappingProfile()
         {
             CreateMap<NewFunctionDTO, Function>();
-            CreateMap<Function, NewFunctionDTO>();
         }
     }
 }

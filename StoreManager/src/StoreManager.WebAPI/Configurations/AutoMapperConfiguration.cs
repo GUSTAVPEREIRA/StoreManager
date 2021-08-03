@@ -7,7 +7,7 @@ namespace StoreManager.WebAPI.Configurations
     {
         public static void AddAutoMapperConfig(this IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(NewFunctionMappingProfile), 
+            services.AddAutoMapper(typeof(NewFunctionMappingProfile),
                 typeof(UpdateFunctionMappingProfile),
                 typeof(FunctionMappingProfile));
         }
