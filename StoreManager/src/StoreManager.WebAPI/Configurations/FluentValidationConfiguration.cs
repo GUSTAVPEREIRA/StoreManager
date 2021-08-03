@@ -12,8 +12,7 @@ namespace StoreManager.WebAPI.Configurations
         public static void AddFluentValidationConfiguration(this IServiceCollection services)
         {
             services.AddControllers()
-            .AddNewtonsoftJson(x =>
-            {
+            .AddNewtonsoftJson(x =>            {
                 x.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 x.SerializerSettings.Converters.Add(new StringEnumConverter());
             })
