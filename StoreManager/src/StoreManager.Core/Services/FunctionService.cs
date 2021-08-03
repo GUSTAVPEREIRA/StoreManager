@@ -37,14 +37,15 @@ namespace e.Services
             return mapping.Map<FunctionDTO>(function);
         }
 
-        public async Task DeleteFunctionAsync(int id)
+        public async Task<FunctionDTO> DeleteFunctionAsync(int id)
         {
-            await functionRepository.DeleteFunctionAsync(id);
+            var function = await functionRepository.DeleteFunctionAsync(id);
+            return mapping.Map<FunctionDTO>(function);
         }
 
         public async Task<FunctionDTO> InsertFunctionAsync(NewFunctionDTO functionDTO)
         {
-            var function = mapping.Map<Function>(functionDTO);
+            var function = mapping.Map<NewFunctionDTO, Function>(functionDTO);
             function = await functionRepository.InsertAsync(function);
 
             return mapping.Map<FunctionDTO>(function);

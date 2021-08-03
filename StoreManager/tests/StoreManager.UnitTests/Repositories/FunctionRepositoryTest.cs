@@ -12,7 +12,7 @@ using StoreManager.Infrastructure.Context;
 using StoreManager.Infrastructure.Repositories;
 using Xunit;
 
-namespace StoreManager.UnitTests.Repositories.Functions
+namespace StoreManager.UnitTests.Repositories
 {
     public class FunctionRepositoryTest : IDisposable
     {        

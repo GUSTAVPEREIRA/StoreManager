@@ -6,7 +6,7 @@ namespace StoreManager.Core.Interfaces.Repositories
 {
     public interface IFunctionRepository
     {
-        Task DeleteFunctionAsync(int id);
+        Task<Function> DeleteFunctionAsync(int id);
         Task<Function> GetFunctionAsync(int id);
         Task<IEnumerable<Function>> GetFunctionsAsync();
         Task<Function> InsertAsync(Function function);

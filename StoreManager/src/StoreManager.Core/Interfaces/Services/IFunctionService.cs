@@ -6,7 +6,7 @@ namespace e.Interfaces.Services
 {
     public interface IFunctionService
     {
-        Task DeleteFunctionAsync(int id);
+        Task<FunctionDTO> DeleteFunctionAsync(int id);
         Task<FunctionDTO> GetFunctionAsync(int id);        
         Task<IEnumerable<FunctionDTO>> GetFunctionsAsync();
         Task<FunctionDTO> InsertFunctionAsync(NewFunctionDTO functionDTO);
