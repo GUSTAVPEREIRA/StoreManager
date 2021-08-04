@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StoreManager.SharedKernel</name>
+    </assembly>
+    <members>
+        <member name="P:StoreManager.SharedKernel.ViewModels.FunctionDTO.Id">
+            <example>10</example>
+        </member>
+        <member name="P:StoreManager.SharedKernel.ViewModels.FunctionDTO.Description">
+            <example>Administrador</example>
+        </member>
+        <member name="P:StoreManager.SharedKernel.ViewModels.FunctionDTO.Admin">
+            <example>true</example>
+        </member>
+        <member name="P:StoreManager.SharedKernel.ViewModels.NewFunctionDTO.Description">
+            <example>Atendente</example>
+        </member>
+        <member name="P:StoreManager.SharedKernel.ViewModels.NewFunctionDTO.Admin">
+            <example>false</example>
+        </member>
+        <member name="P:StoreManager.SharedKernel.ViewModels.UpdateFunctionDTO.Id">
+            <example>1</example>
+        </member>
+    </members>
+</doc>
