@@ -16,8 +16,10 @@ namespace StoreManager.Infrastructure.Context
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new FunctionConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
         }
 
         public DbSet<Function> Functions { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
