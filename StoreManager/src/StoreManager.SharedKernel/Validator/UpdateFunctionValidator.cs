@@ -3,11 +3,12 @@ using StoreManager.SharedKernel.ViewModels;
 
 namespace StoreManager.SharedKernel.Validator
 {
-    public class UpdateFunctionValidation : AbstractValidator<UpdateFunctionDTO>
+    public class UpdateFunctionValidator : AbstractValidator<UpdateFunctionDTO>
     {
-        public UpdateFunctionValidation()
+        public UpdateFunctionValidator()
         {
             RuleFor(x => x.Id).NotEmpty().NotNull().GreaterThan(0);
+            Include(new NewFunctionValidator());
         }
     }
 }

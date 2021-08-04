@@ -19,6 +19,9 @@ namespace StoreManager.WebAPI.Controllers
             this.functionService = functionService;
         }
 
+        /// <summary>
+        /// Retorna todas as funções
+        /// </summary>
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<FunctionDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -35,6 +38,11 @@ namespace StoreManager.WebAPI.Controllers
             return NotFound();
         }
 
+        /// <summary>
+        /// Retorna uma função pelo ID
+        /// </summary>
+        /// <param name="id" example="5"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(FunctionDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -51,6 +59,12 @@ namespace StoreManager.WebAPI.Controllers
             return Ok(function);
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="function"></param>
+        /// <returns></returns>
         [HttpPut]
         [ProducesResponseType(typeof(FunctionDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -67,7 +81,7 @@ namespace StoreManager.WebAPI.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(FunctionDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(FunctionDTO), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Post(NewFunctionDTO function)

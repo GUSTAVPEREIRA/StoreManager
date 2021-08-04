@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
-using StoreManager.Core.Interfaces.Repositories;
 using StoreManager.Core.Interfaces.Services;
 using StoreManager.Core.Mappings.Functions;
 using StoreManager.FakeData.Functions;
@@ -20,7 +19,6 @@ namespace StoreManager.UnitTests.Controllers
     {
         private readonly IMapper mapper;
         private readonly IFunctionService functionService;
-        private readonly IFunctionRepository functionRepository;
         private readonly FunctionController functionController;
         private readonly List<FunctionDTO> functions;
         private readonly FunctionDTO functionDTO;

@@ -24,6 +24,7 @@ namespace StoreManager.WebAPI
             services.AddSwaggerConfiguration();
             services.AddAutoMapperConfig();
             services.AddDependencyInjectionConfig();
+            services.AddFluentValidationConfiguration();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
