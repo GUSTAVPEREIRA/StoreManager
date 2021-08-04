@@ -66,7 +66,7 @@ namespace StoreManager.UnitTests.Controllers
             var resultado = (StatusCodeResult) await functionController.Get();
 
             await functionService.Received().GetFunctionsAsync();
-            resultado.Should().Be(StatusCodes.Status404NotFound);
+            resultado.StatusCode.Should().Be(StatusCodes.Status404NotFound);
         }
 
         [Fact]
@@ -86,9 +86,9 @@ namespace StoreManager.UnitTests.Controllers
         {
             functionService.GetFunctionAsync(Arg.Any<int>()).ReturnsNull();
 
-            var resultado = (ObjectResult) await functionController.Get(1);
+            var resultado = (StatusCodeResult) await functionController.Get(1);
 
-            //await functionService.Received().GetFunctionAsync(1);
+            await functionService.Received().GetFunctionAsync(Arg.Any<int>());
             resultado.StatusCode.Should().Be(StatusCodes.Status404NotFound);
         }
 

@@ -45,9 +45,9 @@ namespace StoreManager.WebAPI.Controllers
 
             if (function == null)
             {
-                return NotFound();
-                
+                return NotFound();                
             }
+            
             return Ok(function);
         }
 
