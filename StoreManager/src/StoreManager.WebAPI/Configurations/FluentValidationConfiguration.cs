@@ -4,6 +4,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using StoreManager.SharedKernel.Validator;
 
 namespace StoreManager.WebAPI.Configurations
 {
@@ -22,6 +23,9 @@ namespace StoreManager.WebAPI.Configurations
             })
             .AddFluentValidation(x =>
             {
+                x.RegisterValidatorsFromAssemblyContaining<NewFunctionValidator>();
+                x.RegisterValidatorsFromAssemblyContaining<UpdateFunctionValidator>();
+                x.RegisterValidatorsFromAssemblyContaining<FunctionValidator>();
                 x.ValidatorOptions.LanguageManager.Culture = new CultureInfo("pt-BR");
             });
         }
