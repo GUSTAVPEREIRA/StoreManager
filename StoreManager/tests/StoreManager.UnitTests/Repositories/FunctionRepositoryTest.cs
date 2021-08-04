@@ -15,7 +15,7 @@ using Xunit;
 namespace StoreManager.UnitTests.Repositories
 {
     public class FunctionRepositoryTest : IDisposable
-    {        
+    {
         private readonly IFunctionRepository functionRepository;
         private readonly StoreContext context;
         private readonly FunctionDataFaker functionDataFaker;
@@ -67,7 +67,6 @@ namespace StoreManager.UnitTests.Repositories
             //Given            
             var functions = await InsertDatas();
             var functionId = functions.Select(x => x.Id).First();
-
             var function = new FunctionDataFaker(functionId).Generate();
 
             //When
@@ -80,37 +79,29 @@ namespace StoreManager.UnitTests.Repositories
         [Fact]
         public async Task GetFunctions()
         {
-            //Given
             var functions = await InsertDatas();
 
-            //When
             var searchedFunctions = await functionRepository.GetFunctionsAsync();
 
-            //Then
             searchedFunctions.Should().BeEquivalentTo(functions);
         }
 
         [Fact]
         public async Task GetFunction()
         {
-            //Given
             var functions = await InsertDatas();
             var function = functions.FirstOrDefault();
 
-            //When
             var searchedFunction = await functionRepository.GetFunctionAsync(function.Id);
 
-            //Then
             searchedFunction.Should().BeEquivalentTo(function);
         }
 
         [Fact]
         public async Task GetFunctionNotFound()
-        {                        
-            //When
+        {
             var searchedFunction = await functionRepository.GetFunctionAsync(1);
 
-            //Then
             searchedFunction.Should().BeNull();
         }
 
@@ -123,6 +114,32 @@ namespace StoreManager.UnitTests.Repositories
             await context.SaveChangesAsync();
 
             return functions;
+        }
+
+        [Fact]
+        public async Task DeleteFunctionOk()
+        {
+            var functions = await InsertDatas();
+            var function = functions.First();
+
+            var result = await functionRepository.DeleteFunctionAsync(function.Id);
+            var functionDeleted = await functionRepository.GetFunctionAsync(function.Id);
+
+            result.Should().BeEquivalentTo(function);
+            functionDeleted.Should().BeNull();
+        }
+
+        [Fact]
+        public async Task DeleteFunctionNotFound()
+        {
+            var functions = await InsertDatas();
+            var function = functions.First();
+
+            var result = await functionRepository.DeleteFunctionAsync(-1);
+
+            var functionDeleted = await functionRepository.GetFunctionAsync(function.Id);            
+            functionDeleted.Should().BeEquivalentTo(function);
+            result.Should().BeNull();
         }
     }
 }

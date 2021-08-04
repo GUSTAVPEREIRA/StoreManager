@@ -81,7 +81,7 @@ namespace StoreManager.WebAPI.Controllers
         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(int id)
         {
-            await functionService.DeleteFunctionAsync(id);
+            var result = await functionService.DeleteFunctionAsync(id);
             return NoContent();
         }
     }

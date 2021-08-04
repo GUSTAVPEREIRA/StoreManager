@@ -23,7 +23,6 @@ namespace StoreManager.UnitTests.Controllers
         private readonly IFunctionRepository functionRepository;
         private readonly FunctionController functionController;
         private readonly List<FunctionDTO> functions;
-
         private readonly FunctionDTO functionDTO;
 
         public FunctionControllerTest()
@@ -46,11 +45,11 @@ namespace StoreManager.UnitTests.Controllers
         {
             //Given
             functionService.GetFunctionsAsync().Returns(functions);
-            var controle = new List<FunctionDTO>();                        
-            functions.ForEach(x => controle.Add(x.TypedClone()));            
+            var controle = new List<FunctionDTO>();
+            functions.ForEach(x => controle.Add(x.TypedClone()));
 
             //When
-            var result = (ObjectResult) await functionController.Get();
+            var result = (ObjectResult)await functionController.Get();
 
             //Then
             await functionService.Received().GetFunctionsAsync();
@@ -63,22 +62,22 @@ namespace StoreManager.UnitTests.Controllers
         {
             functionService.GetFunctionsAsync().Returns(new List<FunctionDTO>());
 
-            var resultado = (StatusCodeResult) await functionController.Get();
+            var result = (StatusCodeResult)await functionController.Get();
 
             await functionService.Received().GetFunctionsAsync();
-            resultado.StatusCode.Should().Be(StatusCodes.Status404NotFound);
+            result.StatusCode.Should().Be(StatusCodes.Status404NotFound);
         }
 
         [Fact]
         public async Task GetByIdOk()
         {
             functionService.GetFunctionAsync(Arg.Any<int>()).Returns(functionDTO.TypedClone());
-            
-            var resultado = (ObjectResult) await functionController.Get(functionDTO.Id);
+
+            var result = (ObjectResult)await functionController.Get(functionDTO.Id);
 
             await functionService.Received().GetFunctionAsync(Arg.Any<int>());
-            resultado.Value.Should().BeEquivalentTo(functionDTO);
-            resultado.StatusCode.Should().Be(StatusCodes.Status200OK);
+            result.Value.Should().BeEquivalentTo(functionDTO);
+            result.StatusCode.Should().Be(StatusCodes.Status200OK);
         }
 
         [Fact]
@@ -86,10 +85,10 @@ namespace StoreManager.UnitTests.Controllers
         {
             functionService.GetFunctionAsync(Arg.Any<int>()).ReturnsNull();
 
-            var resultado = (StatusCodeResult) await functionController.Get(1);
+            var result = (StatusCodeResult)await functionController.Get(1);
 
             await functionService.Received().GetFunctionAsync(Arg.Any<int>());
-            resultado.StatusCode.Should().Be(StatusCodes.Status404NotFound);
+            result.StatusCode.Should().Be(StatusCodes.Status404NotFound);
         }
 
         [Fact]
@@ -97,13 +96,54 @@ namespace StoreManager.UnitTests.Controllers
         {
             functionService.InsertFunctionAsync(Arg.Any<NewFunctionDTO>()).Returns(functionDTO.TypedClone());
 
-            var resultado = (ObjectResult) await functionController.Post(new NewFunctionDTO());
+            var result = (ObjectResult)await functionController.Post(new NewFunctionDTO());
 
             await functionService.Received().InsertFunctionAsync(Arg.Any<NewFunctionDTO>());
-            resultado.StatusCode.Should().Be(StatusCodes.Status201Created);
-            resultado.Value.Should().BeEquivalentTo(functionDTO);
+            result.StatusCode.Should().Be(StatusCodes.Status201Created);
+            result.Value.Should().BeEquivalentTo(functionDTO);
         }
 
+        [Fact]
+        public async Task DeleteNoContentAsync()
+        {
+            //Given
+            functionService.DeleteFunctionAsync(Arg.Any<int>()).Returns(functionDTO);
 
+            //When
+            var result = (StatusCodeResult)await functionController.Delete(1);
+
+            //Then
+            await functionService.Received().DeleteFunctionAsync(Arg.Any<int>());
+            result.StatusCode.Should().Be(StatusCodes.Status204NoContent);
+        }
+
+        [Fact]
+        public async Task PutFunctionOkAsync()
+        {
+            //Given
+            functionService.UpdateFunctionAsync(Arg.Any<UpdateFunctionDTO>()).Returns(functionDTO.TypedClone());
+
+            //When
+            var result = (ObjectResult)await functionController.Put(new UpdateFunctionDTO());
+
+            //Then
+            await functionService.Received().UpdateFunctionAsync(Arg.Any<UpdateFunctionDTO>());
+            result.StatusCode.Should().Be(StatusCodes.Status200OK);
+            result.Value.Should().BeEquivalentTo(functionDTO);
+        }
+
+        [Fact]
+        public async Task PutFunctionNotFoundAsync()
+        {
+            //Given
+            functionService.UpdateFunctionAsync(Arg.Any<UpdateFunctionDTO>()).ReturnsNull();
+
+            //When
+            var result = (StatusCodeResult)await functionController.Put(new UpdateFunctionDTO());
+
+            //Then
+            await functionService.Received().UpdateFunctionAsync(Arg.Any<UpdateFunctionDTO>());
+            result.StatusCode.Should().Be(StatusCodes.Status404NotFound);
+        }
     }
 }

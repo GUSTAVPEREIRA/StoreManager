@@ -53,6 +53,11 @@ namespace StoreManager.Infrastructure.Repositories
         {
             var foundFunction = await context.Functions.FindAsync(id);
 
+            if (foundFunction == null)
+            {
+                return null;
+            }
+
             context.Functions.Remove(foundFunction);
             await context.SaveChangesAsync();
             return foundFunction;
