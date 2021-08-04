@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using StoreManager.Application.Interfaces.Services;
 using StoreManager.Core.Domain;
 using StoreManager.Core.Interfaces.Repositories;
-using StoreManager.Core.Interfaces.Services;
 using StoreManager.SharedKernel.ViewModels;
 
-namespace StoreManager.Core.Services
+namespace StoreManager.Application.Services
 {
     public class FunctionService : IFunctionService
     {

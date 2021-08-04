@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\StoreManager.SharedKernel\StoreManager.SharedKernel.csproj" />
     <ProjectReference Include="..\..\src\StoreManager.Core\StoreManager.Core.csproj" />
   </ItemGroup>
 

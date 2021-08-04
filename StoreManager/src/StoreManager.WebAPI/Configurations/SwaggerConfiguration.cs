@@ -37,9 +37,7 @@ namespace StoreManager.WebAPI.Configurations
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
-                
-                xmlPath = Path.Combine(AppContext.BaseDirectory, "StoreManager.Core.xml");
-                c.IncludeXmlComments(xmlPath);
+                                
                 xmlPath = Path.Combine(AppContext.BaseDirectory, "StoreManager.SharedKernel.xml");
                 c.IncludeXmlComments(xmlPath);
             });

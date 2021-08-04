@@ -1,3 +1,4 @@
+using System.Security.Cryptography.X509Certificates;
 using AutoMapper;
 using StoreManager.Core.Domain;
 using StoreManager.SharedKernel.ViewModels;

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using StoreManager.SharedKernel.ViewModels;
 
-namespace StoreManager.Core.Interfaces.Services
+namespace StoreManager.Application.Interfaces.Services
 {
     public interface IFunctionService
     {
