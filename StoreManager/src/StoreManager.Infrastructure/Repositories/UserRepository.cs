@@ -74,5 +74,6 @@ namespace StoreManager.Infrastructure.Repositories
 
             foundUser.Functions = foundFunctions;
         }
+
     }
 }
