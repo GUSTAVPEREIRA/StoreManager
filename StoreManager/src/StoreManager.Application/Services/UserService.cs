@@ -40,8 +40,8 @@ namespace StoreManager.Application.Services
         public async Task<UserDTO> InsertAsync(NewUserDTO userDTO)
         {
             var user = mapping.Map<NewUserDTO, User>(userDTO);
-            user = await userRepository.InsertAsync(user);
             ConvertPasswordToHash(user);
+            user = await userRepository.InsertAsync(user);
 
             return mapping.Map<UserDTO>(user);
         }

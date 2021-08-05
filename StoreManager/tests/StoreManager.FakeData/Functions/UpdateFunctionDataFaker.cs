@@ -7,7 +7,7 @@ namespace StoreManager.FakeData.Functions
     {
         public UpdateFunctionDataFaker()
         {            
-            var descriptionCount = new Faker().PickRandom(1, 99999999);
+            var descriptionCount = new Faker().Random.Int(1, 99999999);
             RuleFor(x => x.Description, x => x.Lorem.Sentence(100));
             RuleFor(x => x.Admin, x => true);
         }

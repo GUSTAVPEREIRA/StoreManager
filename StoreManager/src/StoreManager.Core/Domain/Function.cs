@@ -1,12 +1,20 @@
+using System;
 using System.Collections.Generic;
 
 namespace StoreManager.Core.Domain
 {
-    public class Function
+    public class Function : ICloneable
     {
         public int Id { get; set; }
         public string Description { get; set; }
         public bool Admin { get; set; }
         public ICollection<User> Users { get; set; }
+
+        public object Clone()
+        {
+            var function = (Function)MemberwiseClone();
+
+            return function;
+        }
     }
 }

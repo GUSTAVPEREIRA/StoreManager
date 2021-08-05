@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Extensions.DependencyInjection;
 using StoreManager.Core.Mappings.Functions;
 using StoreManager.SharedKernel.Mappings.Users;
@@ -11,7 +12,9 @@ namespace StoreManager.WebAPI.Configurations
             services.AddAutoMapper(typeof(NewFunctionMappingProfile),
             typeof(UpdateFunctionMappingProfile),
             typeof(FunctionMappingProfile),
-            typeof(NewUserMappingProfile));
+            typeof(NewUserMappingProfile),
+            typeof(UpdateUserMappingProfile),
+            typeof(UserMappingProfile));
         }
     }
 }

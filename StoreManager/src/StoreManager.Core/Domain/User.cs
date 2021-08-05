@@ -1,9 +1,10 @@
+using System.Linq;
 using System;
 using System.Collections.Generic;
 
 namespace StoreManager.Core.Domain
 {
-    public class User
+    public class User : ICloneable
     {
         public User()
         {
@@ -20,6 +21,21 @@ namespace StoreManager.Core.Domain
         public DateTime CreatedAt { get; private set; }
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; private set; }
+
+        public object Clone()
+        {
+            var user = (User)MemberwiseClone();
+            var functions = new List<Function>();
+            user.Functions.ToList().ForEach(x => functions.Add((Function)x.Clone()));
+            user.Functions = functions;
+
+            return user;
+        }
+
+        public User TypedClone()
+        {
+            return (User)Clone();
+        }
 
         public void DeleteUser()
         {

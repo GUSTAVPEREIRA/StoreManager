@@ -25,7 +25,7 @@ namespace StoreManager.Controllers.UnitTests.Controllers
         {
             userServiceMock = Substitute.For<IUserService>();
             userController = new UserController(userServiceMock);
-            userDTOs = new UserDataFaker().Generate(new Faker().PickRandom(1, 100));
+            userDTOs = new UserDTODataFaker().Generate(new Faker().PickRandom(1, 100));
         }
 
         [Fact]

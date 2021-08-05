@@ -7,8 +7,7 @@ namespace StoreManager.FakeData.Functions
     {
         public FunctionReferenceDataFaker(int id = 0)
         {
-            id = id == 0 ? new Faker().PickRandom(1, 9999) : id;            
-            RuleFor(x => x.Id, id);
+            RuleFor(x => x.Id, x => id == 0 ? x.Random.Int(1, 9999) : id);
         }
     }
 }
