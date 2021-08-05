@@ -1,4 +1,3 @@
-using System.Reflection.Metadata;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +11,7 @@ namespace StoreManager.Infrastructure.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly StoreContext context;
+
         public UserRepository(StoreContext context)
         {
             this.context = context;
@@ -19,12 +19,16 @@ namespace StoreManager.Infrastructure.Repositories
 
         public async Task<IEnumerable<User>> GetUsersAsync()
         {
-            return await context.Users.AsNoTracking().ToListAsync();
+            return await context.Users
+            .Include(x => x.Functions)
+            .AsNoTracking().ToListAsync();
         }
 
         public async Task<User> GetAsync(int id)
         {
-            return await context.Users.FindAsync(id);
+            return await context.Users
+            .Include(x => x.Functions)
+            .SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<User> InsertAsync(User user)
@@ -51,7 +55,9 @@ namespace StoreManager.Infrastructure.Repositories
 
         public async Task<User> UpdateAsync(User user)
         {
-            var foundUser = await context.Users.FindAsync(user.Id);
+            var foundUser = await context.Users
+            .Include(x => x.Functions)
+            .SingleAsync(w => w.Id == user.Id);
 
             if (foundUser == null)
             {
@@ -60,7 +66,9 @@ namespace StoreManager.Infrastructure.Repositories
 
             await UpdateFunctionsUser(user, foundUser);
 
+            user.Login = foundUser.Login;
             context.Entry(foundUser).CurrentValues.SetValues(user);
+
             await context.SaveChangesAsync();
 
             return foundUser;
@@ -68,12 +76,10 @@ namespace StoreManager.Infrastructure.Repositories
 
         private async Task UpdateFunctionsUser(User user, User foundUser)
         {
-            var functions = new List<Function>();
             var functionsId = user.Functions.Select(s => s.Id).ToArray();
             var foundFunctions = await context.Functions.Where(w => functionsId.Contains(w.Id)).ToListAsync();
 
             foundUser.Functions = foundFunctions;
         }
-
     }
 }

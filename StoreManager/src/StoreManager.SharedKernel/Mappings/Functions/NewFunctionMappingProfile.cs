@@ -1,7 +1,7 @@
-using System.Security.Cryptography.X509Certificates;
 using AutoMapper;
 using StoreManager.Core.Domain;
 using StoreManager.SharedKernel.ViewModels;
+using StoreManager.SharedKernel.ViewModels.Functions;
 
 namespace StoreManager.Core.Mappings.Functions
 {
@@ -10,6 +10,8 @@ namespace StoreManager.Core.Mappings.Functions
         public NewFunctionMappingProfile()
         {
             CreateMap<NewFunctionDTO, Function>().ReverseMap();
+            CreateMap<ReferenceFunctionDTO, Function>().ReverseMap();
+
         }
     }
 }

@@ -9,12 +9,14 @@ namespace StoreManager.Core.Domain
         {
             Functions = new List<Function>();
             CreatedAt = DateTime.UtcNow;
+            LastAccess = null;
         }
+        
         public int Id { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
         public ICollection<Function> Functions { get; set; }
-        public DateTime LastAccess { get; set; }
+        public DateTime? LastAccess { get; set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; private set; }
