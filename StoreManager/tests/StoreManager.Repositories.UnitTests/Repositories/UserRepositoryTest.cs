@@ -74,8 +74,7 @@ namespace StoreManager.Repositories.UnitTests.Repositories
         public async Task UpdateUserAsync()
         {
             //Given
-            var users = await InsertUsersDataAsync();
-            var user = users.First();
+            var user = new UserDataFaker(false).Generate();
 
             //When
             var resultUser = await userRepository.InsertAsync(user);
