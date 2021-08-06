@@ -23,7 +23,7 @@ namespace StoreManager.UnitTests.Repositories
 
         public FunctionRepositoryTest()
         {            
-            this.context = InitializeMemoryContext.Initialize();
+            this.context = InitializeMemoryContext.Initialize("functionDbTest");
             this.functionRepository = new FunctionRepository(context);
             functionDataFaker = new FunctionDataFaker();
         }

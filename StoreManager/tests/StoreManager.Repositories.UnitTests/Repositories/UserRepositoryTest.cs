@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Bogus;
 using FluentAssertions;
-using Microsoft.EntityFrameworkCore;
 using StoreManager.Core.Domain;
 using StoreManager.Core.Interfaces.Repositories;
 using StoreManager.FakeData.Users;
@@ -22,9 +21,14 @@ namespace StoreManager.Repositories.UnitTests.Repositories
 
         public UserRepositoryTest()
         {
-            context = InitializeMemoryContext.Initialize();
+            context = InitializeMemoryContext.Initialize("userDBTest");
             userRepository = new UserRepository(context);
             userDataFaker = new UserDataFaker();
+        }
+
+        public void Dispose()
+        {
+            context.Database.EnsureDeleted();
         }
 
         [Fact]
@@ -33,7 +37,7 @@ namespace StoreManager.Repositories.UnitTests.Repositories
 
             //Given
             var users = await InsertUsersDataAsync();
-            var user = users.First();
+            var user = users.FirstOrDefault();
 
             //When
             var foundUser = await userRepository.GetAsync(user.Id);
@@ -82,11 +86,6 @@ namespace StoreManager.Repositories.UnitTests.Repositories
             resultUser.Should().BeEquivalentTo(user);
         }
 
-        void IDisposable.Dispose()
-        {
-            context.Database.EnsureDeleted();
-        }
-
         private async Task<List<User>> InsertUsersDataAsync()
         {
             var listUsers = userDataFaker.Generate(new Faker().Random.Int(1, 100));
@@ -94,7 +93,6 @@ namespace StoreManager.Repositories.UnitTests.Repositories
 
             await context.Users.AddRangeAsync(listUsers);
             await context.SaveChangesAsync();
-            listUsers = await context.Users.ToListAsync();
 
             return listUsers;
         }

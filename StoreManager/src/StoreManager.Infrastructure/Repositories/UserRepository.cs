@@ -42,7 +42,7 @@ namespace StoreManager.Infrastructure.Repositories
 
         private async Task InsertUserFunctionAsync(User user)
         {
-            var functions = new List<Function>();
+            var functions = new List<Function>();            
 
             foreach (var function in user.Functions)
             {
