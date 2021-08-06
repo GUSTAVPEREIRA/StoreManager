@@ -36,7 +36,7 @@ namespace StoreManager.Infrastructure.Repositories
 
         public async Task<Function> UpdateAsync(Function function)
         {
-            var foundFunction = await context.Functions.FindAsync(function.Id);
+            var foundFunction = await context.Functions.AsNoTracking().SingleOrDefaultAsync(x => x.Id == function.Id);
             
             if (foundFunction == null)
             {

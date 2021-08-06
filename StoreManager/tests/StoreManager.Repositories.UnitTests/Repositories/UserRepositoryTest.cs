@@ -17,13 +17,11 @@ namespace StoreManager.Repositories.UnitTests.Repositories
     {
         private readonly IUserRepository userRepository;
         private readonly StoreContext context;
-        private readonly List<User> users;
 
         public UserRepositoryTest()
         {
             context = InitializeMemoryContext.Initialize();
-            userRepository = new UserRepository(context);
-            users = new UserDataFaker().Generate(new Faker().Random.Int(1, 100));            
+            userRepository = new UserRepository(context); 
         }
 
         public void Dispose()
@@ -34,8 +32,9 @@ namespace StoreManager.Repositories.UnitTests.Repositories
         [Fact]
         public async Task GetUserAsync()
         {
+
             //Given
-            await InsertUsersAsync();
+            var users = await InsertUsersDataAsync();
             var user = users.First();
 
             //When
@@ -49,7 +48,7 @@ namespace StoreManager.Repositories.UnitTests.Repositories
         public async Task GetUsers()
         {
             //Given
-            await InsertUsersAsync();
+            var users = await InsertUsersDataAsync();
 
             //When
             var userList = await userRepository.GetUsersAsync();
@@ -62,7 +61,7 @@ namespace StoreManager.Repositories.UnitTests.Repositories
         public async Task InsertUserAsync()
         {
             //Given
-            var user = users.First();
+            var user = new UserDataFaker(false).Generate();
 
             //When
             var resultUser = await userRepository.InsertAsync(user);
@@ -75,6 +74,7 @@ namespace StoreManager.Repositories.UnitTests.Repositories
         public async Task UpdateUserAsync()
         {
             //Given
+            var users = await InsertUsersDataAsync();
             var user = users.First();
 
             //When
@@ -84,10 +84,14 @@ namespace StoreManager.Repositories.UnitTests.Repositories
             resultUser.Should().BeEquivalentTo(user);
         }
 
-        private async Task InsertUsersAsync()
+        private async Task<List<User>> InsertUsersDataAsync()
         {
-            await context.Users.AddRangeAsync(users);
+            var listUsers = new UserDataFaker(false).Generate(new Faker().PickRandom(1, 100));
+            await context.Users.AddRangeAsync(listUsers);
+
             await context.SaveChangesAsync();
+
+            return listUsers;
         }
     }
 }
