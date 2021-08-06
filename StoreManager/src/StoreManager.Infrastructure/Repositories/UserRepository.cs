@@ -28,7 +28,7 @@ namespace StoreManager.Infrastructure.Repositories
         {
             return await context.Users
             .Include(x => x.Functions)
-            .SingleOrDefaultAsync(x => x.Id == id);
+            .SingleAsync(x => x.Id == id);
         }
 
         public async Task<User> InsertAsync(User user)
