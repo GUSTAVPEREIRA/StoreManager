@@ -42,5 +42,11 @@ namespace StoreManager.Core.Domain
             DeletedAt = DateTime.UtcNow;
             UpdatedAt = DateTime.UtcNow;
         }
+
+        public void UnDeleteUser()
+        {
+            DeletedAt = null;
+            UpdatedAt = DateTime.UtcNow;
+        }
     }
 }

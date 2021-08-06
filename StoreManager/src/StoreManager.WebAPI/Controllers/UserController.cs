@@ -86,5 +86,22 @@ namespace StoreManager.WebAPI.Controllers
 
             return NoContent();
         }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(typeof(UserDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult> UnDelete(int id)
+        {
+            await userService.UndeleteUserAsync(id);
+            var user = await userService.GetUserAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
+        }
     }
 }

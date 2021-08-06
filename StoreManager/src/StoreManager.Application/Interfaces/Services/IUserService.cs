@@ -10,6 +10,7 @@ namespace StoreManager.Application.Interfaces.Services
         Task<UserDTO> GetUserAsync(int id);
         Task<IEnumerable<UserDTO>> GetUsersAsync();
         Task<UserDTO> InsertAsync(NewUserDTO userDTO);
+        Task UndeleteUserAsync(int id);
         Task<UserDTO> UpdateUserAsync(UpdateUserDTO userDTO);
     }
 }

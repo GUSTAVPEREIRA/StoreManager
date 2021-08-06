@@ -10,6 +10,7 @@ using StoreManager.Core.Interfaces.Repositories;
 using StoreManager.FakeData.Functions;
 using StoreManager.Infrastructure.Context;
 using StoreManager.Infrastructure.Repositories;
+using StoreManager.Repositories.UnitTests;
 using Xunit;
 
 namespace StoreManager.UnitTests.Repositories
@@ -21,11 +22,8 @@ namespace StoreManager.UnitTests.Repositories
         private readonly FunctionDataFaker functionDataFaker;
 
         public FunctionRepositoryTest()
-        {
-            var optionsBuilder = new DbContextOptionsBuilder<StoreContext>();
-            optionsBuilder.UseInMemoryDatabase("DBTest");
-
-            this.context = new StoreContext(optionsBuilder.Options);
+        {            
+            this.context = InitializeMemoryContext.Initialize();
             this.functionRepository = new FunctionRepository(context);
             functionDataFaker = new FunctionDataFaker();
         }

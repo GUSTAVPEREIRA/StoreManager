@@ -68,5 +68,12 @@ namespace StoreManager.Application.Services
             user.DeleteUser();
             await userRepository.UpdateAsync(user);
         }
+
+        public async Task UndeleteUserAsync(int id)
+        {
+            var user = await userRepository.GetAsync(id);
+            user.UnDeleteUser();
+            await userRepository.UpdateAsync(user);
+        }
     }
 }
