@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using StoreManager.Application.Interfaces.Services;
 using StoreManager.Core.Domain;
 using StoreManager.Core.Interfaces.Repositories;
+using StoreManager.Core.Interfaces.Services;
+using StoreManager.Core.ViewModels.Functions;
 using StoreManager.SharedKernel.ViewModels;
 
 namespace StoreManager.Application.Services

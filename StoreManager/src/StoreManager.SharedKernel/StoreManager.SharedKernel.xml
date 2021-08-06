@@ -4,56 +4,5 @@
         <name>StoreManager.SharedKernel</name>
     </assembly>
     <members>
-        <member name="P:StoreManager.SharedKernel.ViewModels.FunctionDTO.Id">
-            <example>10</example>
-        </member>
-        <member name="P:StoreManager.SharedKernel.ViewModels.FunctionDTO.Description">
-            <example>Administrador</example>
-        </member>
-        <member name="P:StoreManager.SharedKernel.ViewModels.FunctionDTO.Admin">
-            <example>true</example>
-        </member>
-        <member name="P:StoreManager.SharedKernel.ViewModels.NewFunctionDTO.Description">
-            <example>Atendente</example>
-        </member>
-        <member name="P:StoreManager.SharedKernel.ViewModels.NewFunctionDTO.Admin">
-            <example>false</example>
-        </member>
-        <member name="P:StoreManager.SharedKernel.ViewModels.Functions.ReferenceFunctionDTO.Id">
-            <example>1</example>
-        </member>
-        <member name="P:StoreManager.SharedKernel.ViewModels.UpdateFunctionDTO.Id">
-            <example>1</example>
-        </member>
-        <member name="P:StoreManager.SharedKernel.ViewModels.Users.NewUserDTO.Login">
-            <example>CarlosSoares</example>
-        </member>
-        <member name="P:StoreManager.SharedKernel.ViewModels.Users.NewUserDTO.Password">
-            <example>senh@Segur@</example>
-        </member>
-        <member name="P:StoreManager.SharedKernel.ViewModels.Users.UpdateUserDTO.Id">
-            <example>1</example>
-        </member>
-        <member name="P:StoreManager.SharedKernel.ViewModels.Users.UpdateUserDTO.Password">
-            <example>Senh@Segur@1</example>
-        </member>
-        <member name="P:StoreManager.SharedKernel.ViewModels.Users.UserDTO.Id">
-            <example>1</example>
-        </member>
-        <member name="P:StoreManager.SharedKernel.ViewModels.Users.UserDTO.Login">
-            <example>CarlosRoberto</example>
-        </member>
-        <member name="P:StoreManager.SharedKernel.ViewModels.Users.UserDTO.LastAccess">
-            <example>05/08/2021 or null</example>
-        </member>
-        <member name="P:StoreManager.SharedKernel.ViewModels.Users.UserDTO.CreatedAt">
-            <example>20/07/1992</example>
-        </member>
-        <member name="P:StoreManager.SharedKernel.ViewModels.Users.UserDTO.UpdatedAt">
-            <example>20/07/1994 OR null</example>
-        </member>
-        <member name="P:StoreManager.SharedKernel.ViewModels.Users.UserDTO.DeletedAt">
-            <example>20/07/1998 or null</example>
-        </member>
     </members>
 </doc>

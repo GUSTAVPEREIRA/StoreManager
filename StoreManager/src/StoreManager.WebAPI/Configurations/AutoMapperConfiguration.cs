@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Extensions.DependencyInjection;
 using StoreManager.Core.Mappings.Functions;
+using StoreManager.SharedKernel.Mappings.Functions;
 using StoreManager.SharedKernel.Mappings.Users;
 
 namespace StoreManager.WebAPI.Configurations

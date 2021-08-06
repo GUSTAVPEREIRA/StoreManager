@@ -21,7 +21,7 @@ namespace StoreManager.Repositories.UnitTests.Repositories
 
         public UserRepositoryTest()
         {
-            context = InitializeMemoryContext.Initialize("userDBTest");
+            context = InitializeMemoryContext.Initialize("UserRepositoryTest");
             userRepository = new UserRepository(context);
             userDataFaker = new UserDataFaker();
         }
@@ -29,6 +29,7 @@ namespace StoreManager.Repositories.UnitTests.Repositories
         public void Dispose()
         {
             context.Database.EnsureDeleted();
+            context.Dispose();
         }
 
         [Fact]

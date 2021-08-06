@@ -1,4 +1,4 @@
-namespace StoreManager.SharedKernel.ViewModels
+namespace StoreManager.Core.ViewModels.Functions
 {
     public class NewFunctionDTO
     {        

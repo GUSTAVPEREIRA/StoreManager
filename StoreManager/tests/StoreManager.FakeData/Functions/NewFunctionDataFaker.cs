@@ -1,5 +1,5 @@
 using Bogus;
-using StoreManager.SharedKernel.ViewModels;
+using StoreManager.Core.ViewModels.Functions;
 
 namespace StoreManager.FakeData.Functions
 {

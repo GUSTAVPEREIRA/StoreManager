@@ -1,5 +1,5 @@
 using FluentValidation;
-using StoreManager.SharedKernel.ViewModels;
+using StoreManager.Core.ViewModels.Functions;
 
 namespace StoreManager.SharedKernel.Validator
 {

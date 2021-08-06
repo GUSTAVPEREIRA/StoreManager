@@ -1,3 +1,5 @@
+using StoreManager.Core.ViewModels.Functions;
+
 namespace StoreManager.SharedKernel.ViewModels
 {
     public class UpdateFunctionDTO : NewFunctionDTO

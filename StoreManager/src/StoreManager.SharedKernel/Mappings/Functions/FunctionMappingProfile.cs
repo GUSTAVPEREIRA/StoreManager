@@ -1,8 +1,8 @@
 using AutoMapper;
 using StoreManager.Core.Domain;
-using StoreManager.SharedKernel.ViewModels;
+using StoreManager.Core.ViewModels.Functions;
 
-namespace StoreManager.Core.Mappings.Functions
+namespace StoreManager.SharedKernel.Mappings.Functions
 {
     public class FunctionMappingProfile : Profile
     {

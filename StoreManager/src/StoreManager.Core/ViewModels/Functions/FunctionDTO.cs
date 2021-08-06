@@ -1,6 +1,6 @@
 using System;
 
-namespace StoreManager.SharedKernel.ViewModels
+namespace StoreManager.Core.ViewModels.Functions
 {
     public class FunctionDTO : ICloneable
     {

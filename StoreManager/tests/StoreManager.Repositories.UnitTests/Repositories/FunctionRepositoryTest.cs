@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Bogus;
 using FluentAssertions;
-using Microsoft.EntityFrameworkCore;
 using StoreManager.Core.Domain;
 using StoreManager.Core.Interfaces.Repositories;
 using StoreManager.FakeData.Functions;
@@ -22,8 +21,10 @@ namespace StoreManager.UnitTests.Repositories
         private readonly FunctionDataFaker functionDataFaker;
 
         public FunctionRepositoryTest()
-        {            
-            this.context = InitializeMemoryContext.Initialize("functionDbTest");
+        {
+
+            this.context = InitializeMemoryContext.Initialize("FunctionRepositoryTest");
+
             this.functionRepository = new FunctionRepository(context);
             functionDataFaker = new FunctionDataFaker();
         }
@@ -31,6 +32,7 @@ namespace StoreManager.UnitTests.Repositories
         public void Dispose()
         {
             context.Database.EnsureDeleted();
+            context.Dispose();
         }
 
         [Fact]
@@ -135,7 +137,7 @@ namespace StoreManager.UnitTests.Repositories
 
             var result = await functionRepository.DeleteFunctionAsync(-1);
 
-            var functionDeleted = await functionRepository.GetFunctionAsync(function.Id);            
+            var functionDeleted = await functionRepository.GetFunctionAsync(function.Id);
             functionDeleted.Should().BeEquivalentTo(function);
             result.Should().BeNull();
         }

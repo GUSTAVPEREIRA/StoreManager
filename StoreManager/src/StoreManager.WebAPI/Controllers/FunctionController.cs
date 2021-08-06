@@ -3,7 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using StoreManager.Application.Interfaces.Services;
+using StoreManager.Core.Interfaces.Services;
+using StoreManager.Core.ViewModels.Functions;
 using StoreManager.SharedKernel.ViewModels;
 
 namespace StoreManager.WebAPI.Controllers
