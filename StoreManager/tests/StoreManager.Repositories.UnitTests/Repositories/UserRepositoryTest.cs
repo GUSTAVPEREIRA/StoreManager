@@ -17,16 +17,13 @@ namespace StoreManager.Repositories.UnitTests.Repositories
     {
         private readonly IUserRepository userRepository;
         private readonly StoreContext context;
+        private readonly UserDataFaker userDataFaker;
 
         public UserRepositoryTest()
         {
             context = InitializeMemoryContext.Initialize();
-            userRepository = new UserRepository(context); 
-        }
-
-        public void Dispose()
-        {
-            context.Database.EnsureDeleted();
+            userRepository = new UserRepository(context);
+            userDataFaker = new UserDataFaker();
         }
 
         [Fact]
@@ -61,7 +58,7 @@ namespace StoreManager.Repositories.UnitTests.Repositories
         public async Task InsertUserAsync()
         {
             //Given
-            var user = new UserDataFaker(false).Generate();
+            var user = new UserDataFaker().Generate();
 
             //When
             var resultUser = await userRepository.InsertAsync(user);
@@ -74,7 +71,7 @@ namespace StoreManager.Repositories.UnitTests.Repositories
         public async Task UpdateUserAsync()
         {
             //Given
-            var user = new UserDataFaker(false).Generate();
+            var user = new UserDataFaker().Generate();
 
             //When
             var resultUser = await userRepository.InsertAsync(user);
@@ -83,11 +80,17 @@ namespace StoreManager.Repositories.UnitTests.Repositories
             resultUser.Should().BeEquivalentTo(user);
         }
 
-        private async Task<List<User>> InsertUsersDataAsync()
+        void IDisposable.Dispose()
         {
-            var listUsers = new UserDataFaker(false).Generate(new Faker().PickRandom(1, 100));
-            await context.Users.AddRangeAsync(listUsers);
+            context.Database.EnsureDeleted();
+        }
 
+        private async Task<IEnumerable<User>> InsertUsersDataAsync()
+        {
+            var listUsers = userDataFaker.Generate(new Faker().Random.Int(1, 100));
+            listUsers.ForEach(x => x.Id = 0);
+
+            await context.Users.AddRangeAsync(listUsers);
             await context.SaveChangesAsync();
 
             return listUsers;

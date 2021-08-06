@@ -5,23 +5,22 @@ namespace StoreManager.FakeData.Functions
 {
     public class FunctionDataFaker : Faker<Function>
     {
-        public FunctionDataFaker()
+        public FunctionDataFaker() : this(0)
         {
-            FunctionRules();
+
         }
 
         public FunctionDataFaker(int id)
         {
-            FunctionRules(id);
+            var functionId = id != 0 ? id : new Faker().Random.Int(1, 99999999);
+            RuleFor(x => x.Id, x => functionId);
+            CommonRules();
         }
 
-        private void FunctionRules(int id = 0)
+        private void CommonRules()
         {
-            var functionId = id != 0 ? id : new Faker().Random.Int(1, 99999999);
-            
             var descriptionCount = new Faker().Random.Int(5, 150);
             RuleFor(x => x.Description, x => x.Lorem.Sentence(descriptionCount));
-            RuleFor(x => x.Id, x => functionId);
             RuleFor(x => x.Admin, x => true);
         }
     }
