@@ -2,11 +2,11 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
-using StoreManager.Application.Interfaces.Services;
 using StoreManager.Core.Domain;
 using StoreManager.Core.Interfaces.Repositories;
-using StoreManager.SharedKernel.ViewModels.Users;
 using System;
+using StoreManager.Core.Interfaces.Services;
+using StoreManager.Core.ViewModels.Users;
 
 namespace StoreManager.Application.Services
 {

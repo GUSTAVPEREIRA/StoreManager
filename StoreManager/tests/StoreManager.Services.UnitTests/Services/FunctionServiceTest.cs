@@ -12,7 +12,6 @@ using StoreManager.Core.Mappings.Functions;
 using StoreManager.Core.ViewModels.Functions;
 using StoreManager.FakeData.Functions;
 using StoreManager.SharedKernel.Mappings.Functions;
-using StoreManager.SharedKernel.ViewModels;
 using Xunit;
 
 namespace StoreManager.Services.UnitTests.Services

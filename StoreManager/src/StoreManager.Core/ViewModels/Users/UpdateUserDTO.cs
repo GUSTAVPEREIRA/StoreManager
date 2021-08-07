@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using StoreManager.SharedKernel.ViewModels.Functions;
+using StoreManager.Core.ViewModels.Functions;
 
-namespace StoreManager.SharedKernel.ViewModels.Users
+namespace StoreManager.Core.ViewModels.Users
 {
     public class UpdateUserDTO
     {

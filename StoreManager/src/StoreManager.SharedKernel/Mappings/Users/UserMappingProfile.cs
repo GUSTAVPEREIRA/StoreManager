@@ -1,6 +1,6 @@
 using AutoMapper;
 using StoreManager.Core.Domain;
-using StoreManager.SharedKernel.ViewModels.Users;
+using StoreManager.Core.ViewModels.Users;
 
 namespace StoreManager.SharedKernel.Mappings.Users
 {

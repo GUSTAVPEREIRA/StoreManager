@@ -1,6 +1,6 @@
 using System;
 
-namespace StoreManager.SharedKernel.ViewModels
+namespace StoreManager.Core.ViewModels
 {
     public class ErrorResponse
     {

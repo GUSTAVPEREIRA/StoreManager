@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using StoreManager.Core.ViewModels.Functions;
-using StoreManager.SharedKernel.ViewModels;
 
 namespace StoreManager.Core.Interfaces.Services
 {

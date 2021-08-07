@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using StoreManager.SharedKernel.ViewModels.Users;
+using StoreManager.Core.ViewModels.Users;
 
-namespace StoreManager.Application.Interfaces.Services
+namespace StoreManager.Core.Interfaces.Services
 {
     public interface IUserService
     {

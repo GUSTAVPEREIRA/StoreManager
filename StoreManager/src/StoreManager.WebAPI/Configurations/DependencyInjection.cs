@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using StoreManager.Application.Interfaces.Services;
 using StoreManager.Application.Services;
 using StoreManager.Core.Interfaces.Repositories;
 using StoreManager.Core.Interfaces.Services;

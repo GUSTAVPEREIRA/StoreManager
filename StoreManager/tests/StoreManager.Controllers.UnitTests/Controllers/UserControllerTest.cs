@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
-using StoreManager.Application.Interfaces.Services;
+using StoreManager.Core.Interfaces.Services;
+using StoreManager.Core.ViewModels.Users;
 using StoreManager.FakeData.Users;
-using StoreManager.SharedKernel.ViewModels.Users;
 using StoreManager.WebAPI.Controllers;
 using Xunit;
 

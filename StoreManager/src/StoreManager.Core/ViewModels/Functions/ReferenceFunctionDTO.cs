@@ -1,4 +1,4 @@
-namespace StoreManager.SharedKernel.ViewModels.Functions
+namespace StoreManager.Core.ViewModels.Functions
 {
     public class ReferenceFunctionDTO
     {

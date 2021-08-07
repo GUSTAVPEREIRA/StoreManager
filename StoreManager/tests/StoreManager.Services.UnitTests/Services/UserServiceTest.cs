@@ -6,14 +6,14 @@ using Bogus;
 using FluentAssertions;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
-using StoreManager.Application.Interfaces.Services;
 using StoreManager.Application.Services;
 using StoreManager.Core.Domain;
 using StoreManager.Core.Interfaces.Repositories;
+using StoreManager.Core.Interfaces.Services;
+using StoreManager.Core.ViewModels.Users;
 using StoreManager.FakeData.Users;
 using StoreManager.SharedKernel.Mappings.Functions;
 using StoreManager.SharedKernel.Mappings.Users;
-using StoreManager.SharedKernel.ViewModels.Users;
 using Xunit;
 
 namespace StoreManager.Services.UnitTests.Services

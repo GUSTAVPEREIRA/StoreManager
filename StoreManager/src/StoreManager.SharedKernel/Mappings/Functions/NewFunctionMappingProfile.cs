@@ -1,7 +1,6 @@
 using AutoMapper;
 using StoreManager.Core.Domain;
 using StoreManager.Core.ViewModels.Functions;
-using StoreManager.SharedKernel.ViewModels.Functions;
 
 namespace StoreManager.Core.Mappings.Functions
 {

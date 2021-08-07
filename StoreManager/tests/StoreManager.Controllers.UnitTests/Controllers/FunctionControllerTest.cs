@@ -10,7 +10,6 @@ using StoreManager.Core.Interfaces.Services;
 using StoreManager.Core.ViewModels.Functions;
 using StoreManager.FakeData.Functions;
 using StoreManager.SharedKernel.Mappings.Functions;
-using StoreManager.SharedKernel.ViewModels;
 using StoreManager.WebAPI.Controllers;
 using Xunit;
 

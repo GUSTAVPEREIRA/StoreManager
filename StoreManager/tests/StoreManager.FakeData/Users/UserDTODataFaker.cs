@@ -1,6 +1,6 @@
 using Bogus;
+using StoreManager.Core.ViewModels.Users;
 using StoreManager.FakeData.Functions;
-using StoreManager.SharedKernel.ViewModels.Users;
 
 namespace StoreManager.FakeData.Users
 {

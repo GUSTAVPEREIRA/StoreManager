@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using StoreManager.SharedKernel.ViewModels;
+using StoreManager.Core.ViewModels;
 
 namespace StoreManager.WebAPI.Controllers
 {
