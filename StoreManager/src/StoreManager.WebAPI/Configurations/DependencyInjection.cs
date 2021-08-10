@@ -10,9 +10,11 @@ namespace StoreManager.WebAPI.Configurations
     {
         public static void AddDependencyInjectionConfig(this IServiceCollection services)
         {
-            services.AddScoped<IFunctionRepository, FunctionRepository>();
+            services.AddSingleton<IJwtService, JwtService>();
             services.AddScoped<IFunctionService, FunctionService>();
             services.AddScoped<IUserService, UserService>();
+            
+            services.AddScoped<IFunctionRepository, FunctionRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
         }
     }

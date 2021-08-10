@@ -13,12 +13,14 @@ namespace StoreManager.Application.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository userRepository;
+        private readonly IJwtService jwtService;
         private readonly IMapper mapping;
 
-        public UserService(IUserRepository userRepository, IMapper mapping)
+        public UserService(IUserRepository userRepository, IMapper mapping, IJwtService jwtService)
         {
             this.userRepository = userRepository;
             this.mapping = mapping;
+            this.jwtService = jwtService;
         }
 
         public async Task<IEnumerable<UserDTO>> GetUsersAsync()
@@ -75,5 +77,34 @@ namespace StoreManager.Application.Services
             user.UnDeleteUser();
             await userRepository.UpdateAsync(user);
         }
+
+        public async Task<String> LoginIn(BaseUserDTO baseUser)
+        {
+            var foundUser = await userRepository.GetByUsernameAsync(baseUser.Login);
+            var token = "";
+
+            if (foundUser != null)
+            {
+                token = jwtService.GenerateToken(foundUser);
+            }
+
+            return token;
+        }
+
+        private bool HashValidateAsync(User user, string hash)
+        {
+            var passwordHasher = new PasswordHasher<User>();
+            var result = passwordHasher.VerifyHashedPassword(user, hash, user.Password);
+
+            return PasswordHashValidate(result);
+        }
+
+        private bool PasswordHashValidate(PasswordVerificationResult result) => result switch
+        {
+            PasswordVerificationResult.Failed => false,
+            PasswordVerificationResult.Success => true,
+            PasswordVerificationResult.SuccessRehashNeeded => true,
+            _ => false
+        };
     }
 }

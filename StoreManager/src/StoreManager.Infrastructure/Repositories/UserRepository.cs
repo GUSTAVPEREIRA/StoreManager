@@ -28,7 +28,12 @@ namespace StoreManager.Infrastructure.Repositories
         {
             return await context.Users
             .Include(x => x.Functions)
-            .SingleAsync(x => x.Id == id);
+            .SingleOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<User> GetByUsernameAsync(string username)
+        {
+            return await context.Users.Include(x => x.Functions).SingleOrDefaultAsync(x => x.Login == username);
         }
 
         public async Task<User> InsertAsync(User user)
@@ -42,7 +47,7 @@ namespace StoreManager.Infrastructure.Repositories
 
         private async Task InsertUserFunctionAsync(User user)
         {
-            var functions = new List<Function>();            
+            var functions = new List<Function>();
 
             foreach (var function in user.Functions)
             {
@@ -57,7 +62,7 @@ namespace StoreManager.Infrastructure.Repositories
         {
             var foundUser = await context.Users
             .Include(x => x.Functions)
-            .SingleAsync(w => w.Id == user.Id);
+            .SingleOrDefaultAsync(w => w.Id == user.Id);
 
             if (foundUser == null)
             {
