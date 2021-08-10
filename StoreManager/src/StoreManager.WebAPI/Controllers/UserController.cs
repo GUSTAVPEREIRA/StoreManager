@@ -87,7 +87,7 @@ namespace StoreManager.WebAPI.Controllers
             return NoContent();
         }
 
-        [HttpGet("undelete/{id}")]
+        [HttpGet("{id}")]
         [ProducesResponseType(typeof(UserDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -103,18 +103,5 @@ namespace StoreManager.WebAPI.Controllers
 
             return Ok(user);
         }
-
-        [HttpPost("authenticate")]
-        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> Login(BaseUserDTO baseUser)
-        {
-            var token = await userService.LoginIn(baseUser);
-
-            return string.IsNullOrEmpty(token) ? Unauthorized() : Ok(token);
-
-        }
     }
 }
-//cp -r flat-remix/Flat-Remix* ~/.icons/ && cp -r flat-remix-gtk/Flat-Remix-GTK* ~/.themes/
