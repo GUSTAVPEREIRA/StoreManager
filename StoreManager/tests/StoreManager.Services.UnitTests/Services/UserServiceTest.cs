@@ -21,7 +21,8 @@ namespace StoreManager.Services.UnitTests.Services
     public class UserServiceTest
     {
         private readonly IMapper mapper;
-        private readonly IUserRepository userRepository;
+        private readonly IUserRepository userRepositoryMock;
+        private readonly IJwtService jwtServiceMock;
         private readonly IUserService userService;
         private readonly List<User> users;
 
@@ -35,8 +36,10 @@ namespace StoreManager.Services.UnitTests.Services
                 p.AddProfile<FunctionMappingProfile>();
             }).CreateMapper();
 
-            userRepository = Substitute.For<IUserRepository>();
-            userService = new UserService(userRepository, mapper);
+            userRepositoryMock = Substitute.For<IUserRepository>();
+            jwtServiceMock = Substitute.For<IJwtService>();
+
+            userService = new UserService(userRepositoryMock, mapper, jwtServiceMock);
             users = new UserDataFaker().Generate(new Faker().Random.Int(1, 100));
         }
 
@@ -49,13 +52,13 @@ namespace StoreManager.Services.UnitTests.Services
             newUser.Password = user.Password;
             var userDTO = mapper.Map<UserDTO>(user);
 
-            userRepository.InsertAsync(Arg.Any<User>()).Returns(user.TypedClone());
+            userRepositoryMock.InsertAsync(Arg.Any<User>()).Returns(user.TypedClone());
 
             //When
             var result = await userService.InsertAsync(newUser);
 
             //Then
-            await userRepository.Received().InsertAsync(Arg.Any<User>());
+            await userRepositoryMock.Received().InsertAsync(Arg.Any<User>());
             result.Should().BeEquivalentTo(userDTO);
         }
 
@@ -68,13 +71,13 @@ namespace StoreManager.Services.UnitTests.Services
             updateUser.Password = user.Password;
             var userDTO = mapper.Map<UserDTO>(user);
 
-            userRepository.UpdateAsync(Arg.Any<User>()).Returns(user.TypedClone());
+            userRepositoryMock.UpdateAsync(Arg.Any<User>()).Returns(user.TypedClone());
 
             //When
             var result = await userService.UpdateUserAsync(updateUser);
 
             //Then
-            await userRepository.Received().UpdateAsync(Arg.Any<User>());
+            await userRepositoryMock.Received().UpdateAsync(Arg.Any<User>());
             result.Should().BeEquivalentTo(userDTO);
         }
 
@@ -84,13 +87,13 @@ namespace StoreManager.Services.UnitTests.Services
             //Given
             var user = users.First();
             var userDTO = mapper.Map<UserDTO>(user);
-            userRepository.GetAsync(Arg.Any<int>()).Returns(user);
+            userRepositoryMock.GetAsync(Arg.Any<int>()).Returns(user);
 
             //When
             var result = await userService.GetUserAsync(1);
 
             //Then
-            await userRepository.Received().GetAsync(Arg.Any<int>());
+            await userRepositoryMock.Received().GetAsync(Arg.Any<int>());
             result.Should().BeEquivalentTo(userDTO);
         }
 
@@ -98,13 +101,13 @@ namespace StoreManager.Services.UnitTests.Services
         public async Task GetUserNotFoundAsync()
         {
             //Given            
-            userRepository.GetAsync(Arg.Any<int>()).ReturnsNull();
+            userRepositoryMock.GetAsync(Arg.Any<int>()).ReturnsNull();
 
             //When
             var result = await userService.GetUserAsync(1);
 
             //Then
-            await userRepository.Received().GetAsync(Arg.Any<int>());
+            await userRepositoryMock.Received().GetAsync(Arg.Any<int>());
             result.Should().BeNull();
         }
 
@@ -113,13 +116,13 @@ namespace StoreManager.Services.UnitTests.Services
         {
             //Given
             var userListDTO = mapper.Map<List<UserDTO>>(users);
-            userRepository.GetUsersAsync().Returns(users);
+            userRepositoryMock.GetUsersAsync().Returns(users);
 
             //When
             var result = await userService.GetUsersAsync();
 
             //Then
-            await userRepository.Received().GetUsersAsync();
+            await userRepositoryMock.Received().GetUsersAsync();
             result.Should().BeEquivalentTo(userListDTO);
         }
 
@@ -127,13 +130,13 @@ namespace StoreManager.Services.UnitTests.Services
         public async Task GetUsersNotFoundAsync()
         {
             //Given            
-            userRepository.GetUsersAsync().ReturnsNull();
+            userRepositoryMock.GetUsersAsync().ReturnsNull();
 
             //When
             var result = await userService.GetUsersAsync();
 
             //Then
-            await userRepository.Received().GetUsersAsync();
+            await userRepositoryMock.Received().GetUsersAsync();
             result.Should().BeEmpty();
         }
 
@@ -142,15 +145,15 @@ namespace StoreManager.Services.UnitTests.Services
         {
             //Given
             var user = users.First();
-            userRepository.GetAsync(Arg.Any<int>()).Returns(user);
-            userRepository.UpdateAsync(Arg.Any<User>()).Returns(user);
+            userRepositoryMock.GetAsync(Arg.Any<int>()).Returns(user);
+            userRepositoryMock.UpdateAsync(Arg.Any<User>()).Returns(user);
 
             //When
             await userService.DeleteUserAsync(user.Id);
 
             //Then
-            await userRepository.Received().GetAsync(Arg.Any<int>());
-            await userRepository.Received().UpdateAsync(Arg.Any<User>());
+            await userRepositoryMock.Received().GetAsync(Arg.Any<int>());
+            await userRepositoryMock.Received().UpdateAsync(Arg.Any<User>());
         }
 
         [Fact]
@@ -158,15 +161,15 @@ namespace StoreManager.Services.UnitTests.Services
         {
             //Given
             var user = users.First();
-            userRepository.GetAsync(Arg.Any<int>()).Returns(user);
-            userRepository.UpdateAsync(Arg.Any<User>()).Returns(user);
+            userRepositoryMock.GetAsync(Arg.Any<int>()).Returns(user);
+            userRepositoryMock.UpdateAsync(Arg.Any<User>()).Returns(user);
 
             //When
             await userService.UndeleteUserAsync(user.Id);
 
             //Then
-            await userRepository.Received().GetAsync(Arg.Any<int>());
-            await userRepository.Received().UpdateAsync(Arg.Any<User>());
+            await userRepositoryMock.Received().GetAsync(Arg.Any<int>());
+            await userRepositoryMock.Received().UpdateAsync(Arg.Any<User>());
         }
     }
 }
