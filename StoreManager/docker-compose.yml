@@ -1,0 +1,7 @@
+version: "3.9"
+
+services: 
+    database:
+        build: ./database
+        ports: 
+            - "9400:1433"
