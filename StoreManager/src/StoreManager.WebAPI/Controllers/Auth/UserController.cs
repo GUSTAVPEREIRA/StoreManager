@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using StoreManager.Core.Auth.Interfaces;
 using StoreManager.Core.Auth.ViewModels;
 
-namespace StoreManager.WebAPI.Controllers
+namespace StoreManager.WebAPI.Controllers.Auth
 {
     [Route("api/[controller]")]
     [ApiController]

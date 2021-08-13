@@ -10,7 +10,7 @@ using NSubstitute.ReturnsExtensions;
 using StoreManager.Core.Auth.Interfaces;
 using StoreManager.Core.Auth.ViewModels;
 using StoreManager.FakeData.Users;
-using StoreManager.WebAPI.Controllers;
+using StoreManager.WebAPI.Controllers.Auth;
 using Xunit;
 
 namespace StoreManager.Controllers.UnitTests.Auth

@@ -30,8 +30,7 @@ namespace StoreManager.Application.Auth.Services
             };
 
             foreach (var function in user.Functions)
-            {
-                claims.Add(new Claim(ClaimTypes.Role, function.Admin.ToString(), ClaimValueTypes.Boolean));
+            {                
                 claims.Add(new Claim("FunctionDescription", function.Description));
             }
 

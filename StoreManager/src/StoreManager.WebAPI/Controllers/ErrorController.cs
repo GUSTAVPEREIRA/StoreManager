@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using StoreManager.Core.ViewModels;
 
-namespace StoreManager.WebAPI.Controllers
+namespace StoreManager.WebAPI.Controllers.Auth
 {
 
     [ApiExplorerSettings(IgnoreApi = true)]

@@ -4,19 +4,19 @@
         <name>StoreManager.WebAPI</name>
     </assembly>
     <members>
-        <member name="M:StoreManager.WebAPI.Controllers.FunctionController.Get">
+        <member name="M:StoreManager.WebAPI.Controllers.Auth.FunctionController.Get">
             <summary>
             Retorna todas as funções
             </summary>
         </member>
-        <member name="M:StoreManager.WebAPI.Controllers.FunctionController.Get(System.Int32)">
+        <member name="M:StoreManager.WebAPI.Controllers.Auth.FunctionController.Get(System.Int32)">
             <summary>
             Retorna uma função pelo ID
             </summary>
             <param name="id" example="5"></param>
             <returns></returns>
         </member>
-        <member name="M:StoreManager.WebAPI.Controllers.FunctionController.Put(StoreManager.Core.Auth.ViewModels.UpdateFunctionDTO)">
+        <member name="M:StoreManager.WebAPI.Controllers.Auth.FunctionController.Put(StoreManager.Core.Auth.ViewModels.UpdateFunctionDTO)">
             <summary>
             
             </summary>

@@ -34,10 +34,33 @@ namespace StoreManager.WebAPI.Configurations
                     TermsOfService = new Uri("https://github.com/GUSTAVPEREIRA/StoreManager/blob/main/LICENSE")
                 });
 
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Insert Token",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                   {
+                       new OpenApiSecurityScheme
+                       {
+                           Reference =new OpenApiReference
+                           {
+                               Type = ReferenceType.SecurityScheme,
+                               Id = "Bearer"
+                           }
+                       },
+                       new string[]{}
+                   }
+                });
+
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
-                                
+
                 xmlPath = Path.Combine(AppContext.BaseDirectory, "StoreManager.Application.xml");
                 c.IncludeXmlComments(xmlPath);
             });

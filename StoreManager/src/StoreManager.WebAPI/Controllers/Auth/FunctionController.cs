@@ -6,9 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using StoreManager.Core.Auth.Interfaces;
 using StoreManager.Core.ViewModels;
 using StoreManager.Core.Auth.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
-namespace StoreManager.WebAPI.Controllers
-{
+namespace StoreManager.WebAPI.Controllers.Auth
+{    
     [Route("api/[controller]")]
     [ApiController]
     public class FunctionController : ControllerBase
@@ -23,7 +24,7 @@ namespace StoreManager.WebAPI.Controllers
         /// <summary>
         /// Retorna todas as funções
         /// </summary>
-        [HttpGet]
+        [HttpGet]        
         [ProducesResponseType(typeof(IEnumerable<FunctionDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]

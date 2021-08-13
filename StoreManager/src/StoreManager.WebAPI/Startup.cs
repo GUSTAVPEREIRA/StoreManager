@@ -21,6 +21,7 @@ namespace StoreManager.WebAPI
         {
             services.AddControllers();
             services.AddDatabaseConfiguration(Configuration);
+            services.AddJwtConfiguration(Configuration);
             services.AddSwaggerConfiguration();
             services.AddAutoMapperConfig();
             services.AddDependencyInjectionConfig();
@@ -37,12 +38,10 @@ namespace StoreManager.WebAPI
 
             app.UseDatabaseConfiguration();
             app.UseSwaggerConfiguration();
-
             app.UseHttpsRedirection();
-
             app.UseRouting();
+            app.AddJwtConfiguration();            
 
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

@@ -10,11 +10,12 @@ using StoreManager.Application.Auth.Mappings;
 using StoreManager.Core.Auth.Interfaces;
 using StoreManager.Core.Auth.ViewModels;
 using StoreManager.FakeData.Auth;
-using StoreManager.WebAPI.Controllers;
+using StoreManager.WebAPI.Controllers.Auth;
 using Xunit;
 
 namespace StoreManager.Controllers.UnitTests.Auth
 {
+    
     public class FunctionControllerTest
     {
         private readonly IMapper mapper;
