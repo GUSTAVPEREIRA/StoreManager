@@ -3,8 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using StoreManager.Core.Interfaces.Services;
-using StoreManager.Core.ViewModels.Users;
+using StoreManager.Core.Auth.Interfaces;
+using StoreManager.Core.Auth.ViewModels;
 
 namespace StoreManager.WebAPI.Controllers
 {

@@ -1,8 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
-using StoreManager.Application.Services;
-using StoreManager.Core.Interfaces.Repositories;
-using StoreManager.Core.Interfaces.Services;
-using StoreManager.Infrastructure.Repositories;
+using StoreManager.Application.Auth.Services;
+using StoreManager.Core.Auth.Interfaces;
+using StoreManager.Infrastructure.Repositories.Auth;
 
 namespace StoreManager.WebAPI.Configurations
 {

@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\StoreManager.SharedKernel\StoreManager.SharedKernel.csproj" />
     <ProjectReference Include="..\..\src\StoreManager.WebAPI\StoreManager.WebAPI.csproj" />
     <ProjectReference Include="..\..\src\StoreManager.Application\StoreManager.Application.csproj" />
     <ProjectReference Include="..\StoreManager.FakeData\StoreManager.FakeData.csproj" />

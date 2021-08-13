@@ -3,9 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using StoreManager.Core.Interfaces.Services;
+using StoreManager.Core.Auth.Interfaces;
 using StoreManager.Core.ViewModels;
-using StoreManager.Core.ViewModels.Functions;
+using StoreManager.Core.Auth.ViewModels;
 
 namespace StoreManager.WebAPI.Controllers
 {

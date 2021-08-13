@@ -30,8 +30,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StoreManager.Infrastructure\StoreManager.Infrastructure.csproj" />
-    <ProjectReference Include="..\StoreManager.Application\StoreManager.Application.csproj" />
-    <ProjectReference Include="..\StoreManager.SharedKernel\StoreManager.SharedKernel.csproj" />
+    <ProjectReference Include="..\StoreManager.Application\StoreManager.Application.csproj" />    
   </ItemGroup>
 
 </Project>

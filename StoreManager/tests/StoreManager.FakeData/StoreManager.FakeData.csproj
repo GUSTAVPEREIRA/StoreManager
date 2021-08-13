@@ -8,8 +8,7 @@
     <PackageReference Include="Bogus" Version="33.0.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\StoreManager.SharedKernel\StoreManager.SharedKernel.csproj" />
+  <ItemGroup>    
     <ProjectReference Include="..\..\src\StoreManager.Core\StoreManager.Core.csproj" />
   </ItemGroup>
 

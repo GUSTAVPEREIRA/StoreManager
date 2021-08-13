@@ -16,7 +16,7 @@
             <param name="id" example="5"></param>
             <returns></returns>
         </member>
-        <member name="M:StoreManager.WebAPI.Controllers.FunctionController.Put(StoreManager.Core.ViewModels.Functions.UpdateFunctionDTO)">
+        <member name="M:StoreManager.WebAPI.Controllers.FunctionController.Put(StoreManager.Core.Auth.ViewModels.UpdateFunctionDTO)">
             <summary>
             
             </summary>

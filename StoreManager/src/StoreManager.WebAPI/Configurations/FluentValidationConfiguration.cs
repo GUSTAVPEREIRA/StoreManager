@@ -4,7 +4,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using StoreManager.SharedKernel.Validator;
+using StoreManager.Application.Auth.Validator;
 
 namespace StoreManager.WebAPI.Configurations
 {
