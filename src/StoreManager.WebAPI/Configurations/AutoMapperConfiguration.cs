@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using StoreManager.Application.Auth.Mappings;
+using StoreManager.Application.Inventory.Mappings;
 
 namespace StoreManager.WebAPI.Configurations
 {
@@ -12,7 +13,8 @@ namespace StoreManager.WebAPI.Configurations
                 typeof(FunctionMappingProfile),
                 typeof(NewUserMappingProfile),
                 typeof(UpdateUserMappingProfile),
-                typeof(UserMappingProfile));
+                typeof(UserMappingProfile),
+                typeof(NewOptionMappingProfile));
         }
     }
 }

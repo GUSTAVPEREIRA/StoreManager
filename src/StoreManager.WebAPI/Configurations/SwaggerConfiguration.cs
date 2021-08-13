@@ -63,6 +63,9 @@ namespace StoreManager.WebAPI.Configurations
 
                 xmlPath = Path.Combine(AppContext.BaseDirectory, "StoreManager.Application.xml");
                 c.IncludeXmlComments(xmlPath);
+                
+                xmlPath = Path.Combine(AppContext.BaseDirectory, "StoreManager.Core.xml");
+                c.IncludeXmlComments(xmlPath);
             });
 
             services.AddFluentValidationRulesToSwagger();

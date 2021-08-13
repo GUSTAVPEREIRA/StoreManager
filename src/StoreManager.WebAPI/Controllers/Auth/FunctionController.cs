@@ -22,7 +22,7 @@ namespace StoreManager.WebAPI.Controllers.Auth
         }
 
         /// <summary>
-        /// Retorna todas as funções
+        /// Get all functions.
         /// </summary>        
         [HttpGet]
         [Authorize(Roles = "Admin")]
@@ -42,7 +42,7 @@ namespace StoreManager.WebAPI.Controllers.Auth
         }
 
         /// <summary>
-        /// Retorna uma função pelo ID
+        /// Get one function by id.
         /// </summary>
         /// <param name="id" example="5"></param>
         /// <returns></returns>
@@ -65,7 +65,7 @@ namespace StoreManager.WebAPI.Controllers.Auth
 
 
         /// <summary>
-        /// 
+        /// Update one function.
         /// </summary>
         /// <param name="function"></param>
         /// <returns></returns>
@@ -85,6 +85,11 @@ namespace StoreManager.WebAPI.Controllers.Auth
             return Ok(foundFundction);
         }
 
+        /// <summary>
+        /// Inser new function.
+        /// </summary>
+        /// <param name="function"></param>
+        /// <returns></returns>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(FunctionDto), StatusCodes.Status201Created)]
@@ -96,6 +101,12 @@ namespace StoreManager.WebAPI.Controllers.Auth
             return CreatedAtAction(nameof(Get), new {insertedFunction.Id}, insertedFunction);
         }
 
+        
+        /// <summary>
+        /// Delete one function by id.
+        /// </summary>
+        /// <param name="id" example="2"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

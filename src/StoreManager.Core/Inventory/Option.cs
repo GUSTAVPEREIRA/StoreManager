@@ -7,6 +7,5 @@ namespace StoreManager.Core.Inventory
         public int Id { get; set; }
         public string Name { get; set; }
         public ICollection<Variant> Variants { get; set; }
-        public Product Product { get; set; }
     }
 }

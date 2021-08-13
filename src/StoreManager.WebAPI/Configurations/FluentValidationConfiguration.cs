@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using StoreManager.Application.Auth.Validator;
+using StoreManager.Application.Inventory.Validator;
 
 namespace StoreManager.WebAPI.Configurations
 {
@@ -24,6 +25,7 @@ namespace StoreManager.WebAPI.Configurations
                     x.RegisterValidatorsFromAssemblyContaining<NewFunctionValidator>();
                     x.RegisterValidatorsFromAssemblyContaining<UpdateFunctionValidator>();
                     x.RegisterValidatorsFromAssemblyContaining<FunctionValidator>();
+                    x.RegisterValidatorsFromAssemblyContaining<NewOptionValidator>();
                     x.ValidatorOptions.LanguageManager.Culture = new CultureInfo("pt-BR");
                 });
         }

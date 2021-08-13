@@ -1,7 +1,10 @@
 using Microsoft.Extensions.DependencyInjection;
 using StoreManager.Application.Auth.Services;
+using StoreManager.Application.Inventory.Services;
 using StoreManager.Core.Auth.Interfaces;
+using StoreManager.Core.Inventory.Interface;
 using StoreManager.Infrastructure.Repositories.Auth;
+using StoreManager.Infrastructure.Repositories.Inventory;
 
 namespace StoreManager.WebAPI.Configurations
 {
@@ -15,6 +18,10 @@ namespace StoreManager.WebAPI.Configurations
 
             services.AddScoped<IFunctionRepository, FunctionRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            
+            services.AddScoped<IOptionRepository, OptionRepository>();
+            services.AddScoped<IOptionService, OptionService>();
+            
         }
     }
 }

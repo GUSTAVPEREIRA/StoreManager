@@ -9,7 +9,6 @@ namespace StoreManager.Infrastructure.Configuration.Inventory
         public void Configure(EntityTypeBuilder<Product> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.HasMany(x => x.Options).WithOne(x => x.Product);
             builder.HasMany(x => x.Variants).WithMany(x => x.Products);
             builder.Property(x => x.Name).HasMaxLength(150).IsRequired();
         }

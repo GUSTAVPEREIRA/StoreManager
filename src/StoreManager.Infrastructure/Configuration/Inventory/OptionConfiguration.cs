@@ -10,7 +10,6 @@ namespace StoreManager.Infrastructure.Configuration.Inventory
         {
             builder.HasKey(x => x.Id);
             builder.HasMany(x => x.Variants).WithMany(x => x.Options);
-            builder.HasOne(x => x.Product).WithMany(x => x.Options);
             builder.Property(x => x.Name).HasMaxLength(100).IsRequired();
         }
     }

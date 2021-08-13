@@ -8,6 +8,5 @@ namespace StoreManager.Core.Inventory
         public string Name { get; set; }
 
         public ICollection<Variant> Variants { get; set; }
-        public ICollection<Option> Options { get; set; }
     }
 }

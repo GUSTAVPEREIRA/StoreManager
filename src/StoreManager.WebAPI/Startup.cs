@@ -22,10 +22,10 @@ namespace StoreManager.WebAPI
             services.AddControllers();
             services.AddDatabaseConfiguration(Configuration);
             services.AddJwtConfiguration(Configuration);
+            services.AddFluentValidationConfiguration();
             services.AddSwaggerConfiguration();
             services.AddAutoMapperConfig();
             services.AddDependencyInjectionConfig();
-            services.AddFluentValidationConfiguration();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,13 +40,9 @@ namespace StoreManager.WebAPI
             app.UseSwaggerConfiguration();
             app.UseHttpsRedirection();
             app.UseRouting();
-            app.AddJwtConfiguration();            
+            app.AddJwtConfiguration();
 
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }
