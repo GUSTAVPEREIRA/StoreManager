@@ -24,15 +24,7 @@ namespace StoreManager.Application.Auth.Services
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(configuration.GetSection("JWT:Secret").Value);
 
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, user.Login)
-            };
-
-            foreach (var function in user.Functions)
-            {                
-                claims.Add(new Claim("FunctionDescription", function.Description));
-            }
+            List<Claim> claims = GenerateClaims(user);
 
             var tokenDescriptor = new SecurityTokenDescriptor()
             {
@@ -45,6 +37,26 @@ namespace StoreManager.Application.Auth.Services
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
+        }
+
+        private static List<Claim> GenerateClaims(User user)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, user.Login)
+            };
+
+            foreach (var function in user.Functions)
+            {
+                claims.Add(new Claim("FunctionDescription", function.Description));
+
+                if (function.Admin)
+                {
+                    claims.Add(new Claim(ClaimTypes.Role, nameof(function.Admin)));
+                }
+            }
+
+            return claims;
         }
     }
 }

@@ -15,7 +15,7 @@ using Xunit;
 
 namespace StoreManager.Controllers.UnitTests.Auth
 {
-    
+
     public class FunctionControllerTest
     {
         private readonly IMapper mapper;
@@ -72,7 +72,7 @@ namespace StoreManager.Controllers.UnitTests.Auth
             var result = (ObjectResult)await functionController.Get(functionDTO.Id);
 
             await functionServiceMock.Received().GetFunctionAsync(Arg.Any<int>());
-            result.StatusCode.Should().Be(StatusCodes.Status200OK);            
+            result.StatusCode.Should().Be(StatusCodes.Status200OK);
         }
 
         [Fact]

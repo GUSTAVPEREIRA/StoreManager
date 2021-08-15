@@ -9,7 +9,7 @@ using StoreManager.Core.Auth.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 
 namespace StoreManager.WebAPI.Controllers.Auth
-{    
+{
     [Route("api/[controller]")]
     [ApiController]
     public class FunctionController : ControllerBase
@@ -23,8 +23,9 @@ namespace StoreManager.WebAPI.Controllers.Auth
 
         /// <summary>
         /// Retorna todas as funções
-        /// </summary>
-        [HttpGet]        
+        /// </summary>        
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(IEnumerable<FunctionDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
@@ -46,6 +47,7 @@ namespace StoreManager.WebAPI.Controllers.Auth
         /// <param name="id" example="5"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(FunctionDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
@@ -55,9 +57,9 @@ namespace StoreManager.WebAPI.Controllers.Auth
 
             if (function == null)
             {
-                return NotFound();                
+                return NotFound();
             }
-            
+
             return Ok(function);
         }
 
@@ -68,6 +70,7 @@ namespace StoreManager.WebAPI.Controllers.Auth
         /// <param name="function"></param>
         /// <returns></returns>
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(FunctionDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
@@ -83,6 +86,7 @@ namespace StoreManager.WebAPI.Controllers.Auth
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(FunctionDTO), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
@@ -93,6 +97,7 @@ namespace StoreManager.WebAPI.Controllers.Auth
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(int id)
