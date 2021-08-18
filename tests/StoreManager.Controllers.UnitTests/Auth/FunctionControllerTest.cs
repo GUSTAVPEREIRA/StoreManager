@@ -19,18 +19,18 @@ namespace StoreManager.Controllers.UnitTests.Auth
     {
         private readonly IFunctionService functionServiceMock;
         private readonly FunctionController functionController;
-        private readonly List<FunctionDto> functionsDtos;
+        private readonly List<FunctionDto> functionsDto;
         private readonly FunctionDto functionDto;
 
         public FunctionControllerTest()
         {
             functionServiceMock = Substitute.For<IFunctionService>();
 
-            IMapper mapper = new MapperConfiguration(p => { p.AddProfile<FunctionMappingProfile>(); }).CreateMapper();
+            var mapper = new MapperConfiguration(p => { p.AddProfile<FunctionMappingProfile>(); }).CreateMapper();
 
             functionController = new FunctionController(functionServiceMock);
             var functions = new FunctionDataFaker().Generate(100);
-            this.functionsDtos = mapper.Map<List<FunctionDto>>(functions);
+            functionsDto = mapper.Map<List<FunctionDto>>(functions);
             functionDto = mapper.Map<FunctionDto>(new FunctionDataFaker().Generate());
         }
 
@@ -38,7 +38,7 @@ namespace StoreManager.Controllers.UnitTests.Auth
         public async Task GetOkAsync()
         {
             //Given
-            functionServiceMock.GetFunctionsAsync().Returns(functionsDtos);
+            functionServiceMock.GetFunctionsAsync().Returns(functionsDto);
 
             //When
             var result = (ObjectResult) await functionController.Get();

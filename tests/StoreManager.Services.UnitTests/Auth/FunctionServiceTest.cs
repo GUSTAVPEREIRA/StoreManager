@@ -48,13 +48,13 @@ namespace StoreManager.Services.UnitTests.Auth
         [Fact]
         public async Task GetFunctionAsyncSuccess()
         {
-            var listaFunctions = functionFaker.Generate(10);
-            repositoryMock.GetFunctionsAsync().Returns(listaFunctions);
-            var controle = mapper.Map<IEnumerable<FunctionDto>>(listaFunctions);
-            var retorno = await service.GetFunctionsAsync();
+            var functions = functionFaker.Generate(10);
+            repositoryMock.GetFunctionsAsync().Returns(functions);
+            var control = mapper.Map<IEnumerable<FunctionDto>>(functions);
+            var result = await service.GetFunctionsAsync();
 
             await repositoryMock.Received().GetFunctionsAsync();
-            retorno.Should().BeEquivalentTo(controle);
+            result.Should().BeEquivalentTo(control);
         }
 
         [Fact]
@@ -62,53 +62,53 @@ namespace StoreManager.Services.UnitTests.Auth
         {
             repositoryMock.GetFunctionsAsync().Returns(new List<Function>());
 
-            var retorno = await service.GetFunctionsAsync();
+            var result = await service.GetFunctionsAsync();
 
             await repositoryMock.Received().GetFunctionsAsync();
-            retorno.Should().BeEquivalentTo(new List<Function>());
+            result.Should().BeEquivalentTo(new List<Function>());
         }
 
         [Fact]
-        public async Task GetClientesAsyncNotFound()
+        public async Task GetClientsAsyncNotFound()
         {
             repositoryMock.GetFunctionAsync(Arg.Any<int>()).Returns(new Function());
-            var controle = mapper.Map<FunctionDto>(new Function());
-            var retorno = await service.GetFunctionAsync(1);
+            var control = mapper.Map<FunctionDto>(new Function());
+            var result = await service.GetFunctionAsync(1);
 
             await repositoryMock.Received().GetFunctionAsync(Arg.Any<int>());
-            retorno.Should().BeEquivalentTo(controle);
+            result.Should().BeEquivalentTo(control);
         }
 
         [Fact]
         public async Task InsertFunctionAsyncSuccess()
         {
             repositoryMock.InsertAsync(Arg.Any<Function>()).Returns(function);
-            var controle = mapper.Map<FunctionDto>(function);
-            var retorno = await service.InsertFunctionAsync(newFunctionDto);
+            var control = mapper.Map<FunctionDto>(function);
+            var result = await service.InsertFunctionAsync(newFunctionDto);
 
             await repositoryMock.Received().InsertAsync(Arg.Any<Function>());
-            retorno.Should().BeEquivalentTo(controle);
+            result.Should().BeEquivalentTo(control);
         }
 
         [Fact]
         public async Task UpdateFunctionAsyncSuccess()
         {
             repositoryMock.UpdateAsync(Arg.Any<Function>()).Returns(function);
-            var controle = mapper.Map<FunctionDto>(function);
-            var retorno = await service.UpdateFunctionAsync(updateFunctionDto);
+            var control = mapper.Map<FunctionDto>(function);
+            var result = await service.UpdateFunctionAsync(updateFunctionDto);
 
             await repositoryMock.Received().UpdateAsync(Arg.Any<Function>());
-            retorno.Should().BeEquivalentTo(controle);
+            result.Should().BeEquivalentTo(control);
         }
 
         [Fact]
-        public async Task UpdateFunctionAsyncNaoEncontrado()
+        public async Task UpdateFunctionAsyncNotFound()
         {
             repositoryMock.UpdateAsync(Arg.Any<Function>()).ReturnsNull();
-            var retorno = await service.UpdateFunctionAsync(updateFunctionDto);
+            var result = await service.UpdateFunctionAsync(updateFunctionDto);
 
             await repositoryMock.Received().UpdateAsync(Arg.Any<Function>());
-            retorno.Should().BeNull();
+            result.Should().BeNull();
         }
 
         [Fact]
@@ -124,7 +124,7 @@ namespace StoreManager.Services.UnitTests.Auth
         }
 
         [Fact]
-        public async Task DeleteFunctionAsyncNaoEncontradoAsync()
+        public async Task DeleteFunctionAsyncNotFoundAsync()
         {
             repositoryMock.DeleteFunctionAsync(Arg.Any<int>()).ReturnsNull();
             var functionDto = await service.DeleteFunctionAsync(function.Id);

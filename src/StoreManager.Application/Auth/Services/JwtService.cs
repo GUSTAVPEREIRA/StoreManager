@@ -39,7 +39,7 @@ namespace StoreManager.Application.Auth.Services
             return tokenHandler.WriteToken(token);
         }
 
-        private static List<Claim> GenerateClaims(User user)
+        private static IEnumerable<Claim> GenerateClaims(User user)
         {
             var claims = new List<Claim>
             {

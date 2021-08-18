@@ -13,7 +13,7 @@ using Xunit;
 
 namespace StoreManager.Repositories.UnitTests.Auth
 {
-    public class FunctionRepositoryTest : IDisposable
+    public sealed class FunctionRepositoryTest : IDisposable
     {
         private readonly IFunctionRepository functionRepository;
         private readonly StoreContext context;
@@ -21,17 +21,14 @@ namespace StoreManager.Repositories.UnitTests.Auth
 
         public FunctionRepositoryTest()
         {
-
-            this.context = InitializeMemoryContext.Initialize("FunctionRepositoryTest");
-
-            this.functionRepository = new FunctionRepository(context);
+            context = InitializeMemoryContext.Initialize("FunctionRepositoryTest");
+            functionRepository = new FunctionRepository(context);
             functionDataFaker = new FunctionDataFaker();
         }
 
         public void Dispose()
         {
             context.Database.EnsureDeleted();
-            context.Dispose();
         }
 
         [Fact]
@@ -64,7 +61,7 @@ namespace StoreManager.Repositories.UnitTests.Auth
         public async Task UpdateFunctionOk()
         {
             //Given            
-            var functions = await InsertDatas();
+            var functions = await InsertFunctions();
             var functionId = functions.Select(x => x.Id).First();
             var function = new FunctionDataFaker(functionId).Generate();
 
@@ -78,7 +75,7 @@ namespace StoreManager.Repositories.UnitTests.Auth
         [Fact]
         public async Task GetFunctions()
         {
-            var functions = await InsertDatas();
+            var functions = await InsertFunctions();
 
             var searchedFunctions = await functionRepository.GetFunctionsAsync();
 
@@ -88,7 +85,7 @@ namespace StoreManager.Repositories.UnitTests.Auth
         [Fact]
         public async Task GetFunction()
         {
-            var functions = await InsertDatas();
+            var functions = await InsertFunctions();
             var function = functions.FirstOrDefault();
 
             var searchedFunction = await functionRepository.GetFunctionAsync(function.Id);
@@ -104,7 +101,7 @@ namespace StoreManager.Repositories.UnitTests.Auth
             searchedFunction.Should().BeNull();
         }
 
-        private async Task<List<Function>> InsertDatas()
+        private async Task<List<Function>> InsertFunctions()
         {
             var functions = functionDataFaker.Generate(new Faker().PickRandom(1, 100));
             functions.ForEach(x => x.Id = 0);
@@ -118,7 +115,7 @@ namespace StoreManager.Repositories.UnitTests.Auth
         [Fact]
         public async Task DeleteFunctionOk()
         {
-            var functions = await InsertDatas();
+            var functions = await InsertFunctions();
             var function = functions.First();
 
             var result = await functionRepository.DeleteFunctionAsync(function.Id);
@@ -131,7 +128,7 @@ namespace StoreManager.Repositories.UnitTests.Auth
         [Fact]
         public async Task DeleteFunctionNotFound()
         {
-            var functions = await InsertDatas();
+            var functions = await InsertFunctions();
             var function = functions.First();
 
             var result = await functionRepository.DeleteFunctionAsync(-1);

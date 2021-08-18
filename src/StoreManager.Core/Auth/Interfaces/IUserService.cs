@@ -9,9 +9,9 @@ namespace StoreManager.Core.Auth.Interfaces
         Task DeleteUserAsync(int id);
         Task<UserDto> GetUserAsync(int id);
         Task<IEnumerable<UserDto>> GetUsersAsync();
-        Task<UserDto> InsertAsync(NewUserDto userDtos);
+        Task<UserDto> InsertAsync(NewUserDto usersDto);
         Task<string> LoginIn(BaseUserDto baseUser);
         Task UndeleteUserAsync(int id);
-        Task<UserDto> UpdateUserAsync(UpdateUserDto userDtos);
+        Task<UserDto> UpdateUserAsync(UpdateUserDto usersDto);
     }
 }

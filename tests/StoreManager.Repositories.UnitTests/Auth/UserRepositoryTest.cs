@@ -13,7 +13,7 @@ using Xunit;
 
 namespace StoreManager.Repositories.UnitTests.Auth
 {
-    public class UserRepositoryTest : IDisposable
+    public sealed class UserRepositoryTest : IDisposable
     {
         private readonly IUserRepository userRepository;
         private readonly StoreContext context;
@@ -29,7 +29,6 @@ namespace StoreManager.Repositories.UnitTests.Auth
         public void Dispose()
         {
             context.Database.EnsureDeleted();
-            context.Dispose();
         }
 
         [Fact]
@@ -80,9 +79,14 @@ namespace StoreManager.Repositories.UnitTests.Auth
         {
             //Given
             var user = new UserDataFaker().Generate();
+            user = await userRepository.InsertAsync(user);
 
+            var userId = user.Id;
+            user = new UserDataFaker().Generate();
+            user.Id = userId;
+            
             //When
-            var resultUser = await userRepository.InsertAsync(user);
+            var resultUser = await userRepository.UpdateAsync(user);
 
             //Then
             resultUser.Should().BeEquivalentTo(user);

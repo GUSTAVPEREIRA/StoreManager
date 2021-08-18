@@ -45,8 +45,10 @@ namespace StoreManager.Services.UnitTests.Auth
         {
             //Given
             var user = users.First();
-            var newUser = new NewUserDto();
-            newUser.Password = user.Password;
+            var newUser = new NewUserDto
+            {
+                Password = user.Password
+            };
             var userDto = mapper.Map<UserDto>(user);
 
             userRepositoryMock.InsertAsync(Arg.Any<User>()).Returns(user.TypedClone());
@@ -64,8 +66,10 @@ namespace StoreManager.Services.UnitTests.Auth
         {
             //Given
             var user = users.First();
-            var updateUser = new UpdateUserDto();
-            updateUser.Password = user.Password;
+            var updateUser = new UpdateUserDto
+            {
+                Password = user.Password
+            };
             var userDto = mapper.Map<UserDto>(user);
 
             userRepositoryMock.UpdateAsync(Arg.Any<User>()).Returns(user.TypedClone());

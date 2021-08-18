@@ -18,21 +18,21 @@ namespace StoreManager.Controllers.UnitTests.Auth
     public class UserControllerTest
     {
         private readonly UserController userController;
-        private readonly List<UserDto> userDtos;
+        private readonly List<UserDto> userDto;
         private readonly IUserService userServiceMock;
 
         public UserControllerTest()
         {
             userServiceMock = Substitute.For<IUserService>();
             userController = new UserController(userServiceMock);
-            userDtos = new UserDtoDataFaker().Generate(new Faker().PickRandom(1, 100));
+            userDto = new UserDtoDataFaker().Generate(new Faker().PickRandom(1, 100));
         }
 
         [Fact]
         public async Task GetUsersOkAsync()
         {
             //Given
-            userServiceMock.GetUsersAsync().Returns(userDtos);
+            userServiceMock.GetUsersAsync().Returns(userDto);
 
             //When
             var result = (ObjectResult) await userController.Get();
@@ -59,10 +59,10 @@ namespace StoreManager.Controllers.UnitTests.Auth
         [Fact]
         public async Task GetUserOkAsync()
         {
-            var userDto = userDtos.First();
+            var user = userDto.First();
 
             //Given
-            userServiceMock.GetUserAsync(Arg.Any<int>()).Returns(userDto);
+            userServiceMock.GetUserAsync(Arg.Any<int>()).Returns(user);
 
             //When
             var result = (ObjectResult) await userController.Get(1);
@@ -90,7 +90,7 @@ namespace StoreManager.Controllers.UnitTests.Auth
         public async Task PostUserCreatedAsync()
         {
             //Given
-            var user = userDtos.First();
+            var user = userDto.First();
             userServiceMock.InsertAsync(Arg.Any<NewUserDto>()).Returns(user);
 
             //When
@@ -105,7 +105,7 @@ namespace StoreManager.Controllers.UnitTests.Auth
         public async Task PutUserOkAsync()
         {
             //Given
-            var user = userDtos.First();
+            var user = userDto.First();
             userServiceMock.UpdateUserAsync(Arg.Any<UpdateUserDto>()).Returns(user);
 
             //When
@@ -148,7 +148,7 @@ namespace StoreManager.Controllers.UnitTests.Auth
         public async Task AuthenticateUserOk()
         {
             //Given
-            userServiceMock.LoginIn(Arg.Any<BaseUserDto>()).Returns("eyap.xpasp,dmasodmamxoimasmxams");
+            userServiceMock.LoginIn(Arg.Any<BaseUserDto>()).Returns("test");
 
             //When
             var result = (ObjectResult) await userController.Login(new BaseUserDto());

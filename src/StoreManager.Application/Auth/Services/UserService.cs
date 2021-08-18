@@ -25,9 +25,9 @@ namespace StoreManager.Application.Auth.Services
         public async Task<IEnumerable<UserDto>> GetUsersAsync()
         {
             var users = await userRepository.GetUsersAsync();
-            var userDtos = mapping.Map<IEnumerable<UserDto>>(users);
+            var usersDto = mapping.Map<IEnumerable<UserDto>>(users);
 
-            return userDtos;
+            return usersDto;
         }
 
         public async Task<UserDto> GetUserAsync(int id)
@@ -37,18 +37,18 @@ namespace StoreManager.Application.Auth.Services
             return mapping.Map<UserDto>(user);
         }
 
-        public async Task<UserDto> InsertAsync(NewUserDto userDtos)
+        public async Task<UserDto> InsertAsync(NewUserDto usersDto)
         {
-            var user = mapping.Map<NewUserDto, User>(userDtos);
+            var user = mapping.Map<NewUserDto, User>(usersDto);
             ConvertPasswordToHash(user);
             user = await userRepository.InsertAsync(user);
 
             return mapping.Map<UserDto>(user);
         }
 
-        public async Task<UserDto> UpdateUserAsync(UpdateUserDto userDtos)
+        public async Task<UserDto> UpdateUserAsync(UpdateUserDto usersDto)
         {
-            var user = mapping.Map<User>(userDtos);
+            var user = mapping.Map<User>(usersDto);
             ConvertPasswordToHash(user);
             user.UpdatedAt = DateTime.UtcNow;
             user = await userRepository.UpdateAsync(user);
@@ -84,7 +84,7 @@ namespace StoreManager.Application.Auth.Services
             return token;
         }
 
-        private void ConvertPasswordToHash(User user)
+        private static void ConvertPasswordToHash(User user)
         {
             var hasher = new PasswordHasher<User>();
             user.Password = hasher.HashPassword(user, user.Password);
@@ -98,7 +98,7 @@ namespace StoreManager.Application.Auth.Services
             return PasswordHashValidate(result);
         }
 
-        private bool PasswordHashValidate(PasswordVerificationResult result)
+        private static bool PasswordHashValidate(PasswordVerificationResult result)
         {
             return result switch
             {

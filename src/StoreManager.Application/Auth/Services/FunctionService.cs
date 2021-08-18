@@ -21,9 +21,9 @@ namespace StoreManager.Application.Auth.Services
         public async Task<IEnumerable<FunctionDto>> GetFunctionsAsync()
         {
             var functions = await functionRepository.GetFunctionsAsync();
-            var functionDtos = mapping.Map<IEnumerable<FunctionDto>>(functions);
+            var functionsDto = mapping.Map<IEnumerable<FunctionDto>>(functions);
 
-            return functionDtos;
+            return functionsDto;
         }
 
         public async Task<FunctionDto> GetFunctionAsync(int id)
