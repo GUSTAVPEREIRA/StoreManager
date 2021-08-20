@@ -1,7 +1,16 @@
-version: "3.9"
+version: "3.7"
 
-services: 
-    database:
-        build: ./database
-        ports: 
-            - "9400:1433"
+services:
+  database:
+    build: ./database
+    ports:
+      - "9400:1433"
+
+  app:
+    restart: always
+    build:
+      context: ./src
+    depends_on:
+      - database
+    ports:
+      - "9401:80"

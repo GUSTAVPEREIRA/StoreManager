@@ -4,24 +4,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A3541ABF-1ABE-41FB-8F36-ABBA2D222D93}"
+ProjectSection(SolutionItems) = preProject
+	src\Dockerfile = src\Dockerfile
+	src\.dockerignore = src\.dockerignore
+	src\entrypoint.sh = src\entrypoint.sh
+EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreManager.WebAPI", "src\StoreManager.WebAPI\StoreManager.WebAPI.csproj", "{3C26CEAD-1862-48E3-847B-A7FEBD64AC84}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "src\API\API.csproj", "{3C26CEAD-1862-48E3-847B-A7FEBD64AC84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreManager.Core", "src\StoreManager.Core\StoreManager.Core.csproj", "{D4B271FD-293F-4DF1-A0BC-58F61CEDE2F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "src\Core\Core.csproj", "{D4B271FD-293F-4DF1-A0BC-58F61CEDE2F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreManager.Infrastructure", "src\StoreManager.Infrastructure\StoreManager.Infrastructure.csproj", "{510F7905-C2B9-4FA1-B6BF-4314790EB73E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{510F7905-C2B9-4FA1-B6BF-4314790EB73E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E540CF45-BD74-42C0-96A9-678275367F6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreManager.FakeData", "tests\StoreManager.FakeData\StoreManager.FakeData.csproj", "{717363A4-8D39-4518-8155-5D1CBD5C06D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakeData", "tests\FakeData\FakeData.csproj", "{717363A4-8D39-4518-8155-5D1CBD5C06D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreManager.Application", "src\StoreManager.Application\StoreManager.Application.csproj", "{BDF1EB21-7A7C-467C-AF73-626B2447A040}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Application\Application.csproj", "{BDF1EB21-7A7C-467C-AF73-626B2447A040}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreManager.Controllers.UnitTests", "tests\StoreManager.Controllers.UnitTests\StoreManager.Controllers.UnitTests.csproj", "{8B470BF5-337D-433B-A4E4-23F9A5DFD125}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controllers.UnitTests", "tests\Controllers.UnitTests\Controllers.UnitTests.csproj", "{8B470BF5-337D-433B-A4E4-23F9A5DFD125}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreManager.Repositories.UnitTests", "tests\StoreManager.Repositories.UnitTests\StoreManager.Repositories.UnitTests.csproj", "{2A5BF9FF-64E5-4B83-B4E8-AACAB891A669}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories.UnitTests", "tests\Repositories.UnitTests\Repositories.UnitTests.csproj", "{2A5BF9FF-64E5-4B83-B4E8-AACAB891A669}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreManager.Services.UnitTests", "tests\StoreManager.Services.UnitTests\StoreManager.Services.UnitTests.csproj", "{7535D367-934E-4049-83C5-F861C9B2DDB4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.UnitTests", "tests\Services.UnitTests\Services.UnitTests.csproj", "{7535D367-934E-4049-83C5-F861C9B2DDB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -136,7 +141,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{3C26CEAD-1862-48E3-847B-A7FEBD64AC84} = {A3541ABF-1ABE-41FB-8F36-ABBA2D222D93}
 		{D4B271FD-293F-4DF1-A0BC-58F61CEDE2F8} = {A3541ABF-1ABE-41FB-8F36-ABBA2D222D93}
-		{510F7905-C2B9-4FA1-B6BF-4314790EB73E} = {A3541ABF-1ABE-41FB-8F36-ABBA2D222D93}		
+		{510F7905-C2B9-4FA1-B6BF-4314790EB73E} = {A3541ABF-1ABE-41FB-8F36-ABBA2D222D93}
 		{717363A4-8D39-4518-8155-5D1CBD5C06D7} = {E540CF45-BD74-42C0-96A9-678275367F6B}
 		{BDF1EB21-7A7C-467C-AF73-626B2447A040} = {A3541ABF-1ABE-41FB-8F36-ABBA2D222D93}
 		{8B470BF5-337D-433B-A4E4-23F9A5DFD125} = {E540CF45-BD74-42C0-96A9-678275367F6B}

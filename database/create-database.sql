@@ -1,5 +1,5 @@
-CREATE DATABASE [StoreManagerDB]
+CREATE DATABASE [store-manager-db]
 GO
 
-USE [StoreManagerDB];
+USE [store-manager-db];
 GO
